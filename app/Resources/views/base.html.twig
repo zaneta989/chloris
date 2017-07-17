@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('style.css') }}">
         {% block stylesheets %}{% endblock %}
+        <meta charset="UTF-8" />
+        <title>{% block title %}Chloris{% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    <div id="menu">
+            <a href="/">Home</a>
+    </div>
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+    <footer>Chloris 2017</footer>
+    {% block javascripts %}{% endblock %}
     </body>
 </html>
