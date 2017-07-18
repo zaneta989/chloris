@@ -14,4 +14,11 @@ class DefaultController extends Controller
     {
         return $this->render('default/index.html.twig');
     }
+    /**
+     * @Route("/info", name="info")
+     */
+    public function informationAction()
+    {
+        return $this->render('default/info.html.twig');
+    }
 }
