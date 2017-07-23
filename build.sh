@@ -1,13 +1,17 @@
 #!/bin/bash
 
 # download composer
-curl https://getcomposer.org/composer.phar -o composer.phar
+echo "download composer"
+curl https://getcomposer.org/composer.phar -o composer.phar &> /dev/null
 
 # composer install
-php composer.phar install
+echo "composer install"
+php composer.phar install &> /dev/null
 
 # create database
-php bin/console doctrine:database:create
+echo "create database"
+php bin/console doctrine:database:create > /dev/null
 
 # schema update
-php bin/console doctrine:schema:update --force
+echo "schema update"
+php bin/console doctrine:schema:update --force > /dev/null
