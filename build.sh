@@ -2,11 +2,21 @@
 
 # download composer
 echo "download composer"
-curl https://getcomposer.org/composer.phar -o composer.phar &> /dev/null
+if [ -e ./composer.phar ]
+then
+    echo "composer already exist. skipping"
+else
+    echo "downloading composer"
+    curl https://getcomposer.org/composer.phar -o composer.phar &> /dev/null
+fi
 
 # composer install
 echo "composer install"
 php composer.phar install &> /dev/null
+
+# drop database
+echo "drop database"
+php bin/console doctrine:database:drop --if-exists --force > /dev/null
 
 # create database
 echo "create database"
