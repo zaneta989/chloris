@@ -75,3 +75,9 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+easy_admin:
+    entities:
+        User:
+            class: AppBundle\Entity\User
+            edit:
+                fields: ['username', 'email']
