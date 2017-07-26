@@ -76,8 +76,18 @@ fos_user:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
 easy_admin:
+    site_name: 'Chloris'
+    design:
+        color_scheme: 'light'
     entities:
         User:
             class: AppBundle\Entity\User
             edit:
-                fields: ['username', 'email']
+                fields: ['username', 'email', { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } } }]
+            new:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email', type: 'email', label: 'E-mail address' }
+                    - { property: 'plainPassword', type: 'password', type_options: { required: true} }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } } }
+                form_options: { validation_groups: ['Registration'] }
