@@ -69,8 +69,11 @@ class Plant
      * @ORM\Column(name="place", type="string", length=255, nullable=true)
      */
     private $place;
-
-
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="plants")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
     /**
      * Get id
      *
