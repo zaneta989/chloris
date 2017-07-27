@@ -8,9 +8,9 @@ services:
       - "../../:/var/www/chloris"
     networks:
       chloris_network:
-        ipv4_address: 10.0.0.2
+        ipv4_address: 10.0.0.3
   chloris_mysql:
-    image: "mysql"
+    image: "mysql:latest"
     hostname: "chloris_mysql"
     container_name: "chloris_mysql"
     ports:
@@ -20,9 +20,9 @@ services:
       MYSQL_DATABASE: "chloris"
     networks:
       chloris_network:
-        ipv4_address: 10.0.0.3
+        ipv4_address: 10.0.0.2
   chloris_nginx:
-    image: "nginx"
+    image: "nginx:alpine"
     hostname: "chloris_nginx"
     container_name: "chloris_nginx"
     ports:
@@ -32,11 +32,11 @@ services:
       - "../../:/var/www/chloris"
     networks:
       chloris_network:
-        ipv4_address: 10.0.0.4
+        ipv4_address: 10.0.0.1
 networks:
   chloris_network:
     driver: bridge
     ipam:
      config:
        - subnet: 10.0.0.0/28
-         gateway: 10.0.0.1
+         gateway: 10.0.0.14

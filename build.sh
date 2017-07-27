@@ -29,4 +29,3 @@ php bin/console doctrine:schema:update --force > /dev/null
 # doctrine fixtures load
 echo "doctrine fixtures load"
 yes | php bin/console doctrine:fixtures:load > /dev/null
-
