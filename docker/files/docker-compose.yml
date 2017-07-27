@@ -1,0 +1,42 @@
+version: '2'
+services:
+  chloris_php:
+    build: .
+    hostname: "chloris_php"
+    container_name: "chloris_php"
+    volumes:
+      - "../../:/var/www/chloris"
+    networks:
+      chloris_network:
+        ipv4_address: 10.0.0.2
+  chloris_mysql:
+    image: "mysql"
+    hostname: "chloris_mysql"
+    container_name: "chloris_mysql"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "dev"
+      MYSQL_DATABASE: "chloris"
+    networks:
+      chloris_network:
+        ipv4_address: 10.0.0.3
+  chloris_nginx:
+    image: "nginx"
+    hostname: "chloris_nginx"
+    container_name: "chloris_nginx"
+    ports:
+      - "80:80"
+    volumes:
+      - "./default.conf:/etc/nginx/conf.d/default.conf"
+      - "../../:/var/www/chloris"
+    networks:
+      chloris_network:
+        ipv4_address: 10.0.0.4
+networks:
+  chloris_network:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.0.0.0/28
+         gateway: 10.0.0.1

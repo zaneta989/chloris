@@ -1,6 +1,6 @@
 parameters:
-    database_host: 127.0.0.1
-    database_port: ~
+    database_host: chloris_mysql
+    database_port: 3306
     database_name: chloris
     database_user: root
     database_password: dev
@@ -10,4 +10,4 @@ parameters:
     mailer_user: dummy
     mailer_password: dummy
 
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: Tmrekjwgnjrkngtknrgkjn

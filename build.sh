@@ -12,7 +12,7 @@ fi
 
 # composer install
 echo "composer install"
-php composer.phar install &> /dev/null
+php composer.phar install
 
 # drop database
 echo "drop database"
