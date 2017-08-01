@@ -12,7 +12,7 @@ fi
 
 # composer install
 echo "composer install"
-php composer.phar install &> /dev/null
+php composer.phar install
 
 # drop database
 echo "drop database"
@@ -29,3 +29,4 @@ php bin/console doctrine:schema:update --force > /dev/null
 # doctrine fixtures load
 echo "doctrine fixtures load"
 yes | php bin/console doctrine:fixtures:load > /dev/null
+
