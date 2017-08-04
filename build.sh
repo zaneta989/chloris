@@ -7,7 +7,7 @@ then
     echo "composer already exist. skipping"
 else
     echo "downloading composer"
-    curl https://getcomposer.org/composer.phar -o composer.phar &> /dev/null
+    curl https://getcomposer.org/composer.phar -o composer.phar
 fi
 
 # composer install
@@ -16,16 +16,16 @@ php composer.phar install
 
 # drop database
 echo "drop database"
-php bin/console doctrine:database:drop --if-exists --force > /dev/null
+php bin/console doctrine:database:drop --if-exists --force
 
 # create database
 echo "create database"
-php bin/console doctrine:database:create > /dev/null
+php bin/console doctrine:database:create
 
 # schema update
 echo "schema update"
-php bin/console doctrine:schema:update --force > /dev/null
+php bin/console doctrine:schema:update --force
 
 # doctrine fixtures load
 echo "doctrine fixtures load"
-yes | php bin/console doctrine:fixtures:load > /dev/null
+yes | php bin/console doctrine:fixtures:load
