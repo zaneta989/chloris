@@ -1,0 +1,42 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.8.0
+
+cache:
+  directories:
+    - $HOME/docker
+    - vendor
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - >
+    curl -L
+    https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
+    > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+before_install:
+  - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
+  - sudo /etc/init.d/mysql stop
+  - sudo chmod -R 777 .
+
+install: ./docker/up
+
+before_script: sleep 30
+
+script:
+  - docker exec -u www-data chloris_php bash -c './build.sh'
+  - docker exec -u www-data chloris_php bash -c 'behat --format=progress'
+
+after_script:
+  - ./docker/down
+
+before_cache:
+  - >
+    mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}'
+    | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
