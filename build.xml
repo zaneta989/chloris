@@ -1,0 +1,69 @@
+<project name="chloris" default="build" basedir=".">
+    <!-- SUITE -->
+    <target name="build" depends="fixtures" />
+    <target name="test" depends="behat" />
+    <!-- END -->
+    <!-- COMPOSER -->
+    <target name="composer">
+        <echo message="Download composer ..." />
+        <available file="composer.phar" property="comp_prop_exists" type="file" />
+            <if>
+                <equals arg1="${comp_prop_exists}" arg2="true" />
+                <then>
+                    <echo message="Composer already exist. Skipping" />
+                </then>
+                <else>
+                    <echo message="Downloading composer ..." />
+                    <retry retrycount="3">
+                        <exec executable="curl" checkreturn="true">
+                            <arg value="https://getcomposer.org/composer.phar" />
+                            <arg value="--output" />
+                            <arg value="composer.phar" />
+                        </exec>
+                    </retry>
+                </else>
+            </if>
+        <echo message="Running composer install ..." />
+        <exec executable="php" checkreturn="true">
+            <arg value="composer.phar" />
+            <arg value="install" />
+        </exec>
+    </target>
+    <!-- END -->
+    <!-- DOCTRINE -->
+    <target name="doctrine" depends="composer">
+        <echo message="Drop database ..." />
+        <exec executable="bin/console" checkreturn="true">
+            <arg value="doctrine:database:drop" />
+            <arg value="--if-exists" />
+            <arg value="--force" />
+        </exec>
+        <echo message="Creating database ..." />
+        <exec executable="bin/console" checkreturn="true">
+            <arg value="doctrine:database:create" />
+        </exec>
+        <echo message="Updating database ..." />
+        <exec executable="bin/console" checkreturn="true">
+            <arg value="doctrine:schema:update" />
+            <arg value="--force" />
+        </exec>
+    </target>
+    <!-- END -->
+    <!-- FIXTURES -->
+    <target name="fixtures" depends="doctrine">
+        <echo message="Loading data fixtures ..." />
+        <exec executable="bin/console" checkreturn="true">
+            <arg value="doctrine:fixtures:load" />
+            <arg value="--no-interaction" />
+        </exec>
+    </target>
+    <!-- END -->
+    <!-- BEHAT -->
+    <target name="behat">
+        <echo message="Running behat tests ..." />
+        <exec executable="behat" checkreturn="true" passthru="true">
+            <arg value="--format=progress"/>
+        </exec>
+    </target>
+    <!-- END -->
+</project>
