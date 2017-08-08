@@ -78,15 +78,25 @@ fos_user:
 easy_admin:
     site_name: 'Chloris'
     design:
+        menu:
+        - User
+        - { label: 'Homepage', route: 'homepage' }
         color_scheme: 'light'
     entities:
         User:
             class: AppBundle\Entity\User
+            controller: AppBundle\Controller\Admin\UserController
+            list:
+                fields:
+                    - property: 'username'
+                    - { property: 'email', type: 'email', label: 'E-mail address' }
+                    - 'enabled'
+                    - 'lastLogin'
             edit:
                 fields: ['username', 'email', { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } } }]
             new:
                 fields:
-                    - { property: 'username' }
+                    - 'username'
                     - { property: 'email', type: 'email', label: 'E-mail address' }
                     - { property: 'plainPassword', type: 'password', type_options: { required: true} }
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } } }
