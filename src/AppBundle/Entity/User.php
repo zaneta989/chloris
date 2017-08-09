@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
@@ -22,6 +23,10 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Plant", mappedBy="user")
      */
     private $plants;
+    /**
+     * @Assert\Length(max = 50,groups={"Profile", "Registration"})
+     */
+    protected $username;
 
     public function __construct()
     {
