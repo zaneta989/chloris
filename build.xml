@@ -24,9 +24,10 @@
                 </else>
             </if>
         <echo message="Running composer install ..." />
-        <exec executable="php" checkreturn="true">
+        <exec executable="php" checkreturn="true" passthru="true">
             <arg value="composer.phar" />
             <arg value="install" />
+            <arg value="--no-interaction" />
         </exec>
     </target>
     <!-- END -->
