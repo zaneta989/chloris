@@ -4,7 +4,9 @@ default:
       contexts:
         - FeatureContext:
   extensions:
-    Behat\Symfony2Extension: ~
+    Behat\Symfony2Extension:
+      kernel:
+        env: "test"
     Behat\MinkExtension:
       sessions:
         default:

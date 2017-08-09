@@ -1,7 +1,7 @@
 <project name="chloris" default="build" basedir=".">
     <!-- SUITE -->
     <target name="build" depends="fixtures" />
-    <target name="test" depends="behat" />
+    <target name="test" depends="fixturesDev" />
     <!-- END -->
     <!-- COMPOSER -->
     <target name="composer">
@@ -51,15 +51,31 @@
     <!-- END -->
     <!-- FIXTURES -->
     <target name="fixtures" depends="doctrine">
-        <echo message="Loading data fixtures ..." />
+        <echo message="Loading data fixtures..." />
         <exec executable="bin/console" checkreturn="true">
             <arg value="doctrine:fixtures:load" />
             <arg value="--no-interaction" />
         </exec>
     </target>
+    <target name="fixturesDev" depends="behat">
+        <echo message="Loading data fixtures for dev environment..." />
+        <exec executable="bin/console" checkreturn="true">
+            <arg value="doctrine:fixtures:load" />
+            <arg value="--env=dev" />
+            <arg value="--no-interaction" />
+        </exec>
+    </target>
+    <target name="fixturesTest">
+        <echo message="Loading data fixtures for test environment ..." />
+        <exec executable="bin/console" checkreturn="true">
+            <arg value="doctrine:fixtures:load" />
+            <arg value="--env=test" />
+            <arg value="--no-interaction" />
+        </exec>
+    </target>
     <!-- END -->
     <!-- BEHAT -->
-    <target name="behat">
+    <target name="behat" depends="fixturesTest">
         <echo message="Running behat tests ..." />
         <exec executable="behat" checkreturn="true" passthru="true">
             <arg value="--format=progress"/>
