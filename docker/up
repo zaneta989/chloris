@@ -1,3 +1,5 @@
 #!/bin/bash
 
-( cd "${0%/*}/files" && docker-compose up -d )
+( cd "${0%/*}/files" && docker-compose build && docker-compose up -d )
+
+printf "\033[1;32mDocker started succesfully!\033[m\n"
