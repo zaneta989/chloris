@@ -15,7 +15,7 @@
                 <else>
                     <echo message="Downloading composer ..." />
                     <retry retrycount="3">
-                        <exec executable="curl" checkreturn="true">
+                        <exec executable="curl" checkreturn="true" passthru="true">
                             <arg value="https://getcomposer.org/composer.phar" />
                             <arg value="--output" />
                             <arg value="composer.phar" />

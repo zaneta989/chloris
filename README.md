@@ -1,28 +1,23 @@
 # Chloris
 Web application made for remembering about watering the plants. 
 ## How to run it
-First, check if git, Docker and Docker Compose are present on your system. If you do not have it, complete the basic 
-installation using the documentation.
+First, check if git, docker and docker-compose are present on your system. Git is required to clone this repository while docker and docker-compose must be installed to use this application in container environment.
 
-Then clone this repository 
+First, clone this repository 
 
 `git clone https://github.com/zawias2704/chloris.git`
 
-Next, go to the project directory. If you have Linux system, run the following command at the terminal to run docker
+Next, go to the project directory.
+
+`cd chloris`
+
+Now you can run containers in order to start an application:
 
 `./docker/up`
 
-If you have macOS system should use this command 
-
-`./docker/up-mac`
-
-And run on Linux
+Run the following command at the terminal to reach container console:
 
 `./docker/attach`
-
-On macOS
-
-`./docker/attach-mac`
 
 To install the composer, create a database, and load the sample users, run the command
 
@@ -32,7 +27,7 @@ Run the tests after the above command
 
 `phing test`
 
-And run it in your browse of your choice. 
+Now you can run application in browser. 
 
 On Linux
 
@@ -42,15 +37,6 @@ On macOS
 
 `localhost`
 
-To quit the application run
-
-`exit`
-
-And on Linux
+To destroy containers and network:
 
 `./docker/down`
-
-On macOS
-
-`./docker/down-mac`
-
