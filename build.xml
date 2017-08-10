@@ -27,6 +27,7 @@
         <exec executable="php" checkreturn="true" passthru="true">
             <arg value="composer.phar" />
             <arg value="install" />
+            <arg value="--no-suggest"/>
             <arg value="--no-interaction" />
         </exec>
     </target>
