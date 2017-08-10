@@ -1,0 +1,27 @@
+easy_admin:
+    site_name: 'Chloris'
+    design:
+        menu:
+        - User
+        - { label: 'Go to homepage', route: 'homepage' }
+        color_scheme: 'light'
+    entities:
+        User:
+            class: AppBundle\Entity\User
+            controller: AppBundle\Controller\Admin\UserController
+            list:
+                fields:
+                    - property: 'username'
+                    - { property: 'email', type: 'email', label: 'E-mail address' }
+                    - 'enabled'
+                    - 'lastLogin'
+            edit:
+                fields: [property: 'username', property: 'email', { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } } }]
+                form_options: { validation_groups: ['Profile'] }
+            new:
+                fields:
+                    - property: 'username'
+                    - { property: 'email', type: 'email', label: 'Email' }
+                    - { property: 'plainPassword', label: 'Password', type: 'password', type_options: { required: true} }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } } }
+                form_options: { validation_groups: ['Registration'] }
