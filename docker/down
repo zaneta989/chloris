@@ -2,8 +2,11 @@
 
 docker exec -i chloris_php "php bin/console cache:clear --no-warmup" &> /dev/null
 
-( cd "${0%/*}/files" && docker-compose down  )
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    ( cd "${0%/*}/files" && docker-compose -f docker-compose-macos.yml down  )
+else
+    ( cd "${0%/*}/files" && docker-compose down  )
+fi
 
 ( cd "${0%/*}/../app/config" && rm -f parameters.yml  )
-
 printf "\033[1;34mDocker stopped\033[m\n"

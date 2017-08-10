@@ -6,11 +6,10 @@ services:
     container_name: "chloris_php"
     volumes:
       - ../../app:/var/www/chloris/app:cached
-      - ../../bin:/var/www/chloris/bin:cached
+      - ../../bin:/var/www/chloris/bin
       - ../../features:/var/www/chloris/features:cached
       - ../../src:/var/www/chloris/src:cached
       - ../../tests:/var/www/chloris/tests:cached
-      - ../../var:/var/www/chloris/var:delegated
       - ../../vendor:/var/www/chloris/vendor:delegated
       - ../../web:/var/www/chloris/web:cached
       - ../../.gitignore:/var/www/chloris/.gitignore:cached
@@ -37,16 +36,6 @@ services:
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf:cached
       - ../../app:/var/www/chloris/app:cached
-      - ../../bin:/var/www/chloris/bin:cached
-      - ../../features:/var/www/chloris/features:cached
       - ../../src:/var/www/chloris/src:cached
-      - ../../tests:/var/www/chloris/tests:cached
-      - ../../var:/var/www/chloris/var:delegated
       - ../../vendor:/var/www/chloris/vendor:delegated
       - ../../web:/var/www/chloris/web:cached
-      - ../../.gitignore:/var/www/chloris/.gitignore:cached
-      - ../../behat.yml:/var/www/chloris/behat.yml:cached
-      - ../../build.xml:/var/www/chloris/build.xml:cached
-      - ../../composer.json:/var/www/chloris/composer.json:cached
-      - ../../composer.lock:/var/www/chloris/composer.lock:cached
-      - ../../phpunit.xml.dist:/var/www/chloris/phpunit.xml.dist:cached
