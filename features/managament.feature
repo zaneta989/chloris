@@ -11,7 +11,7 @@ Feature: Managament
   Scenario: Back to homepage
     Given I am authenticated as "admin" using "admin"
     When I follow "Managament"
-    And I follow "Home"
+    And I follow "Go to homepag"
     Then I should see "This is homepage."
 
   Scenario: Edit user
