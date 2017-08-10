@@ -80,7 +80,7 @@ easy_admin:
     design:
         menu:
         - User
-        - { label: 'Homepage', route: 'homepage' }
+        - { label: 'Go to homepage', route: 'homepage' }
         color_scheme: 'light'
     entities:
         User:
