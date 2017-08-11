@@ -1,8 +1,19 @@
 default:
   suites:
-    default:
+    web_features:
+      paths:    [ %paths.base%/features/web ]
       contexts:
-        - FeatureContext:
+        - FeatureContext
+    user_features:
+      paths:    [ %paths.base%/features/user ]
+      filters:  { role: user }
+      contexts:
+        - FeatureContext
+    admin_features:
+      paths:    [ %paths.base%/features/admin ]
+      filters:  { role: admin }
+      contexts:
+        - FeatureContext
   extensions:
     Behat\Symfony2Extension:
       kernel:
