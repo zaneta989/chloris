@@ -44,15 +44,6 @@ class FeatureContext extends MinkContext implements Context
         $this->pressButton('Log in');
     }
     /**
-     * @When /^I click "([^"]*)"$/
-     * @param $link
-     */
-    public function iClick($link)
-    {
-        $this->clickLink($link);
-    }
-
-    /**
      * @Then I should see the following text in row:
      * @param TableNode $table
      * @throws Exception
@@ -71,7 +62,7 @@ class FeatureContext extends MinkContext implements Context
 
             if($row==null)
             {
-               throw new Exception('Cannot find any text "'.$key.'"');
+                throw new Exception('Cannot find any text "'.$key.'"');
             }
 
             for($i=1; $i<count($headlines); $i++)
@@ -161,5 +152,12 @@ class FeatureContext extends MinkContext implements Context
             throw new ExpectationException('Select option field with text "'.$option.'" is not selected in the select "'.$select.'"', $this->getSession());
         }
     }
-
+    /**
+     * @When /^I click "([^"]*)"$/
+     * @param $link
+     */
+    public function iClick($link)
+    {
+        $this->clickLink($link);
+    }
 }
