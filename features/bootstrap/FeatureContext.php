@@ -10,11 +10,11 @@ use Behat\Symfony2Extension\Context\KernelDictionary;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use PHPUnit\Framework\Assert;
 
 class FeatureContext extends MinkContext implements Context
 {
     use KernelDictionary;
-
     public function __construct()
     {
     }
@@ -24,13 +24,10 @@ class FeatureContext extends MinkContext implements Context
     public function loadDataFixtures()
     {
         $entityManager = $this->getContainer()->get('doctrine.orm.entity_manager');
-
         $loader = new Loader();
         $loader->addFixture(new LoadUserData());
-
         $purger = new ORMPurger();
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_DELETE);
-
         $executor = new ORMExecutor($entityManager, $purger);
         $executor->execute($loader->getFixtures());
     }
@@ -42,6 +39,14 @@ class FeatureContext extends MinkContext implements Context
         $this->fillField('username', $username);
         $this->fillField('password', $password);
         $this->pressButton('Log in');
+    }
+    /**
+     * @When /^I click "([^"]*)"$/
+     * @param $link
+     */
+    public function iClick($link)
+    {
+        $this->clickLink($link);
     }
     /**
      * @Then I should see the following text in row:
@@ -59,23 +64,11 @@ class FeatureContext extends MinkContext implements Context
                 ->getSession()
                 ->getPage()
                 ->find('css', 'table tr:contains("'.$key.'")');
-
-            if($row==null)
-            {
-                throw new Exception('Cannot find any text "'.$key.'"');
-            }
-
+            Assert::assertNotNull($row,'Cannot find any text "'.$key.'"');
             for($i=1; $i<count($headlines); $i++)
             {
-                if(strpos($row->getHtml(), $text[$headlines[$i]])===false)
-                {
-                    var_dump($text[$headlines[$i]]);
-                    var_dump($row->getHtml());
-
-                    throw new Exception('Text "'.$text[$headlines[$i]].'" does not exist
-                     in table row #'.$i .'with "'.$key.'"');
-                }
-
+                Assert::assertContains( $text[$headlines[$i]], $row->getHtml(),
+                    'Text "'.$text[$headlines[$i]].'" does not exist in table row #'.$i .'with "'.$key.'"');
             }
         }
     }
@@ -95,11 +88,7 @@ class FeatureContext extends MinkContext implements Context
                 ->getSession()
                 ->getPage()
                 ->find('css', 'table tr:contains("'.$key.'")');
-
-            if($row!=null)
-            {
-                throw new Exception('Can find text "'.$key.'"');
-            }
+            Assert::assertNull($row, 'Can find text "'.$key.'"');
         }
     }
     /**
@@ -114,17 +103,9 @@ class FeatureContext extends MinkContext implements Context
             ->getSession()
             ->getPage()
             ->find('css', 'table tr:contains("'.$rowText.'")');
-        if($row == null)
-        {
-            throw new Exception("Row is empty");
-        }
+        Assert::assertNotNull($row, "Row is empty");
         $link = $row->findLink($linkText);
-
-        if($link==null)
-        {
-            throw new Exception('Link"'.$linkText.'" does not exist in row with text "'.$linkText.'"');
-        }
-
+        Assert::assertNotNull($link,'Link"'.$linkText.'" does not exist in row with text "'.$linkText.'"');
         $link->click();
     }
     /**
@@ -135,29 +116,12 @@ class FeatureContext extends MinkContext implements Context
     public function theOptionFromShouldBeSelected($option, $select)
     {
         $selectField = $this->getSession()->getPage()->findField($select);
-        if (null === $selectField) {
-            throw new ElementNotFoundException($this->getSession(), 'select field', 'id|name|label|value', $select);
-        }
-
+        Assert::assertNotNull($selectField,"Not select field id|name|label|value \"'.$select.'\"'");
         $optionField = $selectField->find('named', array(
             'option',
             $option,
         ));
-
-        if (null === $optionField) {
-            throw new ElementNotFoundException($this->getSession(), 'select option field', 'id|name|label|value', $option);
-        }
-
-        if (!$optionField->isSelected()) {
-            throw new ExpectationException('Select option field with text "'.$option.'" is not selected in the select "'.$select.'"', $this->getSession());
-        }
-    }
-    /**
-     * @When /^I click "([^"]*)"$/
-     * @param $link
-     */
-    public function iClick($link)
-    {
-        $this->clickLink($link);
+        Assert::assertNotNull($optionField,"Not select option field");
+        Assert::assertTrue($optionField->isSelected(),'Select option field with text "'.$option.'" is not selected in the select "'.$select.'"');
     }
 }
