@@ -30,3 +30,6 @@ script:
 after_script:
   - sudo chmod -R 777 .
   - ./docker/down
+
+notifications:
+  slack: larvelki:KtdpTWkhFwS4j9GJZ4DT2IFk
