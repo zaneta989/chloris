@@ -20,7 +20,7 @@ class User extends BaseUser
      */
     protected $id;
     /**
-     * @ORM\OneToMany(targetEntity="Plant", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="PlantBundle\Entity\Plant", mappedBy="user")
      */
     private $plants;
     /**

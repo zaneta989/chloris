@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace PlantBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Plant
  *
  * @ORM\Table(name="plant")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PlantRepository")
+ * @ORM\Entity(repositoryClass="PlantBundle\Repository\PlantRepository")
  */
 class Plant
 {
@@ -70,7 +70,7 @@ class Plant
      */
     private $place;
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="plants")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="plants")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
