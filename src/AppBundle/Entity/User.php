@@ -20,7 +20,8 @@ class User extends BaseUser
      */
     protected $id;
     /**
-     * @ORM\OneToMany(targetEntity="PlantBundle\Entity\PlantSpecification", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="PlantBundle\Entity\Plant", mappedBy="owner", cascade={"remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $plants;
     /**
