@@ -1,4 +1,4 @@
-Feature: Managament
+Feature: User managament
   In order to manage users
   As a admin
   I need to be able to login as admin and click managament
