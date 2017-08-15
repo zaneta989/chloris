@@ -5,12 +5,12 @@ namespace PlantBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Plant
+ * PlantSpecification
  *
  * @ORM\Table(name="plant")
- * @ORM\Entity(repositoryClass="PlantBundle\Repository\PlantRepository")
+ * @ORM\Entity(repositoryClass="PlantBundle\Repository\PlantSpecificationRepository")
  */
-class Plant
+class PlantSpecification
 {
     /**
      * @var int
@@ -89,7 +89,7 @@ class Plant
      *
      * @param string $name
      *
-     * @return Plant
+     * @return PlantSpecification
      */
     public function setName($name)
     {
@@ -113,7 +113,7 @@ class Plant
      *
      * @param string $latinName
      *
-     * @return Plant
+     * @return PlantSpecification
      */
     public function setLatinName($latinName)
     {
@@ -137,7 +137,7 @@ class Plant
      *
      * @param string $description
      *
-     * @return Plant
+     * @return PlantSpecification
      */
     public function setDescription($description)
     {
@@ -161,7 +161,7 @@ class Plant
      *
      * @param integer $frequency
      *
-     * @return Plant
+     * @return PlantSpecification
      */
     public function setFrequency($frequency)
     {
@@ -185,7 +185,7 @@ class Plant
      *
      * @param integer $frequencyDays
      *
-     * @return Plant
+     * @return PlantSpecification
      */
     public function setFrequencyDays($frequencyDays)
     {
@@ -209,7 +209,7 @@ class Plant
      *
      * @param float $amount
      *
-     * @return Plant
+     * @return PlantSpecification
      */
     public function setAmount($amount)
     {
@@ -233,7 +233,7 @@ class Plant
      *
      * @param string $place
      *
-     * @return Plant
+     * @return PlantSpecification
      */
     public function setPlace($place)
     {
