@@ -79,6 +79,14 @@ Feature: User managament
       | Username | E-mail address    |
       | test1    | test1@chloris.dev |
 
+  Scenario: Don't found user
+    Given I am authenticated as "admin" using "admin"
+    When I follow "Managament"
+    And I follow "User"
+    When I fill in "query" with "test@chloris.com"
+    And I press "Search"
+    Then I should see "No results found."
+
   Scenario: Search user
     Given I am authenticated as "admin" using "admin"
     When I follow "Managament"

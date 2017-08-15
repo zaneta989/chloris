@@ -2,11 +2,13 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 
-class LoadUserData implements FixtureInterface
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 {
 
     /**
@@ -24,6 +26,7 @@ class LoadUserData implements FixtureInterface
         $user->setRoles(array('ROLE_ADMIN'));
 
         $manager->persist($user);
+        $this->addReference('admin-user', $user);
 
         $user = new User();
         $user->setUsername('sunflower_lover');
@@ -32,6 +35,7 @@ class LoadUserData implements FixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
+        $this->addReference('sunflower-user', $user);
 
         $user = new User();
         $user->setUsername('flower_lover');
@@ -40,6 +44,7 @@ class LoadUserData implements FixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
+        $this->addReference('flower_lover-user', $user);
 
         $user = new User();
         $user->setUsername('flower');
@@ -48,6 +53,7 @@ class LoadUserData implements FixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
+        $this->addReference('flower-user', $user);
 
         $user = new User();
         $user->setUsername('flower_1');
@@ -56,6 +62,7 @@ class LoadUserData implements FixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
+        $this->addReference('flower_1-user', $user);
 
         $user = new User();
         $user->setUsername('test');
@@ -64,6 +71,7 @@ class LoadUserData implements FixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
+        $this->addReference('test-user', $user);
 
         $user = new User();
         $user->setUsername('flower_sun');
@@ -72,6 +80,7 @@ class LoadUserData implements FixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
+        $this->addReference('aflower_sun-user', $user);
 
         $user = new User();
         $user->setUsername('test_user');
@@ -80,6 +89,7 @@ class LoadUserData implements FixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
+        $this->addReference('test_user-user', $user);
 
         $user = new User();
         $user->setUsername('plant_lover');
@@ -88,6 +98,7 @@ class LoadUserData implements FixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
+        $this->addReference('plant_lover-user', $user);
 
         $user = new User();
         $user->setUsername('rose_lover');
@@ -96,7 +107,13 @@ class LoadUserData implements FixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
+        $this->addReference('rose_lover-user', $user);
 
         $manager->flush();
     }
+    public function getOrder()
+    {
+        return 1;
+    }
 }
+
