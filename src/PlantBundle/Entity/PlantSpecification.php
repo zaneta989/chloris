@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PlantSpecification
  *
- * @ORM\Table(name="plant")
+ * @ORM\Table(name="plant_specification")
  * @ORM\Entity(repositoryClass="PlantBundle\Repository\PlantSpecificationRepository")
  */
 class PlantSpecification
@@ -70,8 +70,7 @@ class PlantSpecification
      */
     private $place;
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="plants")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      */
     private $user;
     /**
