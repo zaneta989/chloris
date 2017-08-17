@@ -1,8 +1,6 @@
 <?php
-
 namespace PlantBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Plant
  *
@@ -61,7 +59,6 @@ class Plant
     public function setIsWatered($isWatered)
     {
         $this->isWatered = $isWatered;
-
         return $this;
     }
 }

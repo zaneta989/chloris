@@ -2,7 +2,9 @@
 
 namespace PlantBundle\Entity;
 
+use AppBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * PlantSpecification
@@ -25,6 +27,9 @@ class PlantSpecification
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     *
+     * @Assert\NotBlank(message="Please enter a name.")
+     * @Assert\Length(max=255, maxMessage="The name is too long.")
      */
     private $name;
 
@@ -32,6 +37,8 @@ class PlantSpecification
      * @var string
      *
      * @ORM\Column(name="latinName", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(max=255, maxMessage="The latin name is too long.")
      */
     private $latinName;
 
@@ -39,6 +46,8 @@ class PlantSpecification
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(max=255, maxMessage="The description is too long.")
      */
     private $description;
 
@@ -46,6 +55,8 @@ class PlantSpecification
      * @var int
      *
      * @ORM\Column(name="frequency", type="integer")
+     *
+     * @Assert\NotBlank(message="Please enter a frequency.")
      */
     private $frequency;
 
@@ -53,6 +64,8 @@ class PlantSpecification
      * @var int
      *
      * @ORM\Column(name="frequencyDays", type="integer")
+     *
+     * @Assert\NotBlank(message="Please enter a frequency days.")
      */
     private $frequencyDays;
 
@@ -60,6 +73,8 @@ class PlantSpecification
      * @var float
      *
      * @ORM\Column(name="amount", type="float")
+     *
+     * @Assert\NotBlank(message="Please enter an amount.")
      */
     private $amount;
 
@@ -67,12 +82,15 @@ class PlantSpecification
      * @var string
      *
      * @ORM\Column(name="place", type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(max=255, maxMessage="The place is too long.")
      */
     private $place;
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      */
-    private $user;
+    private $author;
+
     /**
      * Get id
      *
@@ -81,6 +99,30 @@ class PlantSpecification
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get author
+     *
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set author
+     *
+     * @param User $author
+     *
+     * @return PlantSpecification
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
     }
 
     /**
