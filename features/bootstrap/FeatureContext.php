@@ -11,6 +11,7 @@ use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use PHPUnit\Framework\Assert;
+use PlantBundle\DataFixtures\ORM\LoadPlantData;
 use PlantBundle\DataFixtures\ORM\LoadPlantSpecificationData;
 
 class FeatureContext extends MinkContext implements Context
@@ -28,6 +29,7 @@ class FeatureContext extends MinkContext implements Context
         $loader = new Loader();
         $loader->addFixture(new LoadUserData());
         $loader->addFixture(new LoadPlantSpecificationData);
+        $loader->addFixture(new LoadPlantData);
         $purger = new ORMPurger();
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_DELETE);
         $executor = new ORMExecutor($entityManager, $purger);
