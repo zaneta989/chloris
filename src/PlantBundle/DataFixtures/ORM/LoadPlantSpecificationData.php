@@ -30,6 +30,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS->setPlace("Garden");
         $plantS->setAuthor($user);
         $manager->persist($plantS);
+        $this->addReference('azalia', $plantS);
 
         $plantS = new PlantSpecification();
         $plantS->setName("Storczyk");
@@ -40,6 +41,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS->setPlace("Sunny");
         $plantS->setAuthor($user);
         $manager->persist($plantS);
+        $this->addReference('storczyk', $plantS);
 
         $plantS = new PlantSpecification();
         $plantS->setName("Mila");
@@ -50,6 +52,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS->setPlace("not sunny");
         $plantS->setAuthor($user);
         $manager->persist($plantS);
+        $this->addReference('mila', $plantS);
 
         $plantS = new PlantSpecification();
         $plantS->setName("Leptocereus");
@@ -61,7 +64,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS->setPlace("Garden");
         $plantS->setAuthor($user);
         $manager->persist($plantS);
-
+        $this->addReference('leptocereus', $plantS);
 
         $user = $this->getReference('flower-user');
 
@@ -74,6 +77,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS->setPlace("not sunny");
         $plantS->setAuthor($user);
         $manager->persist($plantS);
+        $this->addReference('ficus', $plantS);
 
         $user = $this->getReference('flower_lover-user');
 
@@ -86,6 +90,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS->setAmount(0.3);
         $plantS->setAuthor($user);
         $manager->persist($plantS);
+        $this->addReference('asian_basil', $plantS);
 
         $user = $this->getReference('rose_lover-user');
 
@@ -96,6 +101,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS->setAmount(0.25);
         $plantS->setAuthor($user);
         $manager->persist($plantS);
+        $this->addReference('agawa', $plantS);
 
         $plantS = new PlantSpecification();
         $plantS->setName("Osmunda japonica");
@@ -105,6 +111,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS->setPlace("Garden");
         $plantS->setAuthor($user);
         $manager->persist($plantS);
+        $this->addReference('osmunda', $plantS);
 
         $manager->flush();
     }

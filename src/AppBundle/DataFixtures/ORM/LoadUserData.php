@@ -80,7 +80,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $user->setEnabled(true);
 
         $manager->persist($user);
-        $this->addReference('aflower_sun-user', $user);
+        $this->addReference('flower_sun-user', $user);
 
         $user = new User();
         $user->setUsername('test_user');

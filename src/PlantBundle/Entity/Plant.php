@@ -1,5 +1,6 @@
 <?php
 namespace PlantBundle\Entity;
+use AppBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * Plant
@@ -59,6 +60,53 @@ class Plant
     public function setIsWatered($isWatered)
     {
         $this->isWatered = $isWatered;
+        return $this;
+    }
+    /**
+     * Get owner
+     *
+     * @return User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param User $owner
+     *
+     * @return Plant
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get plantSpecification
+     *
+     * @return PlantSpecification
+     */
+    public function getPlantSpecification()
+    {
+        return $this->plantSpecification;
+    }
+
+    /**
+     * Set plantSpecification
+     *
+     * @param PlantSpecification $plantSpecification
+     *
+     * @return Plant
+     */
+    public function setPlantSpecification($plantSpecification)
+    {
+        $this->plantSpecification = $plantSpecification;
+
         return $this;
     }
 }
