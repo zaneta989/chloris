@@ -11,6 +11,7 @@ use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use PHPUnit\Framework\Assert;
+use PlantBundle\DataFixtures\ORM\LoadPlantSpecificationData;
 
 class FeatureContext extends MinkContext implements Context
 {
@@ -26,6 +27,7 @@ class FeatureContext extends MinkContext implements Context
         $entityManager = $this->getContainer()->get('doctrine.orm.entity_manager');
         $loader = new Loader();
         $loader->addFixture(new LoadUserData());
+        $loader->addFixture(new LoadPlantSpecificationData);
         $purger = new ORMPurger();
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_DELETE);
         $executor = new ORMExecutor($entityManager, $purger);
@@ -80,6 +82,8 @@ class FeatureContext extends MinkContext implements Context
     public function iShouldNotSeeTheFollowingText(TableNode $table)
     {
         $headlines = $table->getRow(0);
+        $countHeadlines=count($headlines);
+        $countFind=0;
         foreach ($table as $text)
         {
             // key is an unique value used to find certain column
@@ -88,8 +92,23 @@ class FeatureContext extends MinkContext implements Context
                 ->getSession()
                 ->getPage()
                 ->find('css', 'table tr:contains("'.$key.'")');
-            Assert::assertNull($row, 'Can find text "'.$key.'"');
+            if($row!=null)
+            {   $countFind+=1;
+                for($i=1; $i<count($headlines); $i++)
+                {
+                    if(strpos($row->getHtml(), $text[$headlines[$i]])===true)
+                    {
+                        $countFind+=1;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                Assert::assertTrue($countHeadlines!=$countFind,'In row found '.$countFind.' words on '.$countHeadlines .'with "'.$key.'"');
+            }
         }
+
     }
     /**
      * @When I click :linkText in the :rowText row
@@ -125,3 +144,4 @@ class FeatureContext extends MinkContext implements Context
         Assert::assertTrue($optionField->isSelected(),'Select option field with text "'.$option.'" is not selected in the select "'.$select.'"');
     }
 }
+
