@@ -1,7 +1,6 @@
 plant:
     resource: "@PlantBundle/Controller/"
     type:     annotation
-
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

@@ -1,5 +1,9 @@
 default:
   suites:
+    plant_specification_features:
+      paths:    [ %paths.base%/features/plantSpecification ]
+      contexts:
+        - FeatureContext
     web_features:
       paths:    [ %paths.base%/features/web ]
       contexts:
