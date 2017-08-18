@@ -34,4 +34,39 @@ class User extends BaseUser
         parent::__construct();
         $this->plants = new ArrayCollection();
     }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get plants
+     *
+     * @return ArrayCollection<Plant>
+     */
+    public function getPlants()
+    {
+        return $this->plants;
+    }
+
+    /**
+     * Set plantSpecification
+     *
+     * @param ArrayCollection <Plant> $plants
+     *
+     * @return User
+     */
+    public function setPlants($plants)
+    {
+        $this->plants = $plants;
+
+        return $this;
+    }
 }
+
