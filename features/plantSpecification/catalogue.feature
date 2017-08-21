@@ -8,7 +8,7 @@ Feature: Catalogue of plants
     And I follow "Catalogue of plants"
     Then I should be on "/catalogue"
     And I should see "Catalogue of plants"
-    And I should not see the following text in row:
+    And I should see the following text in row:
       | Name   | Latin name   |      |
       | Azalia | Rhododendron | show |
 
