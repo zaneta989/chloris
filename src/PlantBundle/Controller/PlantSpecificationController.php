@@ -2,61 +2,33 @@
 
 namespace PlantBundle\Controller;
 
-use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
-use JavierEguiluz\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-
-class PlantSpecificationController extends BaseAdminController
+class PlantSpecificationController extends Controller
 {
-
     /**
-     * The method that is executed when the user performs a 'new' action on an entity.
-     *
-     * @return Response|RedirectResponse
+     * @Route("/catalogue", name="catalogue")
      */
-    protected function newAction()
+    public function catalogueAction()
     {
+        $em = $this->getDoctrine()->getManager();
 
-        $this->dispatch(EasyAdminEvents::PRE_NEW);
+        $plantsSpecification = $em->getRepository('PlantBundle:PlantSpecification')->findAll();
 
-        $entity = $this->executeDynamicMethod('createNew<EntityName>Entity');
+        return $this->render('PlantSpecification/catalogue.html.twig', ['plants' => $plantsSpecification]);
+    }
+    /**
+     * @Route("/catalogue/{id}", name="showPlant")
+     */
+    public function showAction($id)
+    {
+        $plantSpecification =  $this->getDoctrine()
+            ->getRepository('PlantBundle:PlantSpecification')->find($id);
 
-        $easyadmin = $this->request->attributes->get('easyadmin');
-        $easyadmin['item'] = $entity;
-        $this->request->attributes->set('easyadmin', $easyadmin);
-        $fields = $this->entity['new']['fields'];
-
-
-        $newForm = $this->executeDynamicMethod('create<EntityName>NewForm', array($entity, $fields));
-
-        $newForm->handleRequest($this->request);
-        $this->get('property_accessor')->setValue($entity, 'author', $this->getUser());
-        if ($newForm->isSubmitted() && $newForm->isValid()) {
-
-            $this->dispatch(EasyAdminEvents::PRE_PERSIST, array('entity' => $entity));
-
-            $this->executeDynamicMethod('prePersist<EntityName>Entity', array($entity));
-
-            $this->em->persist($entity);
-            $this->em->flush();
-
-            $this->dispatch(EasyAdminEvents::POST_PERSIST, array('entity' => $entity));
-
-            return $this->redirectToReferrer();
+        if (!$plantSpecification) {
+            throw $this->createNotFoundException('No plant found for id '.$id);
         }
-        $this->dispatch(EasyAdminEvents::POST_NEW, array(
-            'entity_fields' => $fields,
-            'form' => $newForm,
-            'entity' => $entity,
-        ));
-
-        return $this->render($this->entity['templates']['new'], array(
-            'form' => $newForm->createView(),
-            'entity_fields' => $fields,
-            'entity' => $entity,
-        ));
+        return $this->render('PlantSpecification/show.html.twig',['plant' => $plantSpecification]);
     }
 }
-

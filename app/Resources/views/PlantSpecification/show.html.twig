@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="article">
+                <h1>Details of the plant</h1><br>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ plant.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Latin Name</th>
+                            <td>{{ plant.latinName }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ plant.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Place</th>
+                            <td>{{ plant.place }}</td>
+                        </tr>
+                        <tr>
+                            <th>How many days watered</th>
+                            <td>{{ plant.frequencyDays }}</td>
+                        </tr>
+                        <tr>
+                            <th>How many times a day watered</th>
+                            <td>{{ plant.frequency }}</td>
+                        </tr>
+                        <tr>
+                            <th>Amount in liters</th>
+                            <td>{{ plant.amount}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

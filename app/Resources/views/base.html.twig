@@ -18,6 +18,7 @@
             <a href="{{ path('homepage') }}">Home</a>
             <a href="{{ path('info') }}">About the site</a>
             <a href="{{ path('contact') }}">Contact</a>
+            <a href="{{ path('catalogue') }}">Catalogue of plants</a>
             {% if is_granted('ROLE_USER') %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('admin') }}">Managament</a>

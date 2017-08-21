@@ -28,7 +28,7 @@ easy_admin:
                 form_options: { validation_groups: ['Registration'] }
         PlantSpecification:
             class: PlantBundle\Entity\PlantSpecification
-            controller: PlantBundle\Controller\PlantSpecificationController
+            controller: PlantBundle\Controller\PlantSpecificationAdminController
             label: 'Plant Specification'
             list:
                 title: 'Plant Specification'
