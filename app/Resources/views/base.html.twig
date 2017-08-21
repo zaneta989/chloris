@@ -23,6 +23,7 @@
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('admin') }}">Managament</a>
                 {% endif %}
+                <td><a href="{{ path('myPlants') }}">My plants</a></td>
                 <a href="{{ path('fos_user_security_logout') }}">Logout ({{ app.user.username }})</a>
             {% else %}
             <a href="{{ path('fos_user_security_login') }}">Login</a>

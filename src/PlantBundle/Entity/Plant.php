@@ -21,7 +21,7 @@ class Plant
     /**
      * @var boolean
      *
-     * @ORM\Column(name="isWatered", type="boolean", nullable=true)
+     * @ORM\Column(name="is_watered", type="boolean", nullable=true)
      */
     private $isWatered;
     /**
