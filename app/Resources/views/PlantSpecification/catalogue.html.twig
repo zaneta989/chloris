@@ -12,6 +12,9 @@
                                 <th>Name</th>
                                 <th>Latin Name</th>
                                 <th></th>
+                                {% if is_granted('ROLE_USER') %}
+                                    <th></th>
+                                {% endif %}
                             </tr>
                             {% for plant in plants %}
                                 <tr>
@@ -19,6 +22,10 @@
                                     <td>{{ plant.name }}</td>
                                     <td>{{ plant.latinName }}</td>
                                     <td><a href="{{ path('showPlant', {'id': plant.id}) }}">show</a></td>
+                                    {% if is_granted('ROLE_USER') %}
+                                        <td><a href="{{ path('addPlant', {'id': plant.id})}}"
+                                               onclick="return confirm('Are you sure?')">add</a></td>
+                                    {% endif %}
                                 </tr>
                             {% endfor %}
                         </table>
