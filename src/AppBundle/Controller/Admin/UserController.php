@@ -51,7 +51,7 @@ class UserController extends BaseAdminController
         else {
 
             $this->addFlash(
-                'notice',
+                'error',
                 'You cannot delete yourself!'
             );
         }

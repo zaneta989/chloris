@@ -2,7 +2,6 @@
 
 namespace PlantBundle\DataFixtures\ORM;
 
-
 use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -18,12 +17,15 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
      */
     public function load(ObjectManager $manager)
     {
+        /**
+         * @var User $user
+         */
         $user = $this->getReference('admin-user');
 
         $plantS = new PlantSpecification();
         $plantS->setName("Azalia");
         $plantS -> setLatinName("Rhododendron");
-        $plantS -> setDescription("Plant naturally occurs in Asia");
+        $plantS -> setDescription("plant naturally occurs in Asia");
         $plantS->setFrequency(1);
         $plantS->setFrequencyDays(2);
         $plantS->setAmount(1.25);
@@ -57,7 +59,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS = new PlantSpecification();
         $plantS->setName("Leptocereus");
         $plantS -> setLatinName("Leptocereus (A.Berger) Britton & Rose");
-        $plantS -> setDescription("Plant naturally occurs in Caribbean islands");
+        $plantS -> setDescription("plant naturally occurs in Caribbean islands");
         $plantS->setFrequency(1);
         $plantS->setFrequencyDays(10);
         $plantS->setAmount(0.5);
@@ -84,7 +86,7 @@ class LoadPlantSpecificationData extends AbstractFixture implements OrderedFixtu
         $plantS = new PlantSpecification();
         $plantS->setName("Asian basil");
         $plantS -> setLatinName("Ocimum tenuiflorum");
-        $plantS -> setDescription("Plant naturally occurs in Asia");
+        $plantS -> setDescription("plant naturally occurs in Asia");
         $plantS->setFrequency(1);
         $plantS->setFrequencyDays(1);
         $plantS->setAmount(0.3);

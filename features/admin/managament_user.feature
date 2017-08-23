@@ -12,7 +12,7 @@ Feature: User managament
     Given I am authenticated as "admin" using "admin"
     When I follow "Managament"
     And I follow "Go to homepage"
-    Then I should see "This is homepage."
+    Then I should see "Web application"
 
   Scenario: Edit user
     Given I am authenticated as "admin" using "admin"

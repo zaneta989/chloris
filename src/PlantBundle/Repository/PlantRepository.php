@@ -2,7 +2,9 @@
 
 namespace PlantBundle\Repository;
 
-class PlantRepository extends \Doctrine\ORM\EntityRepository
+use Doctrine\ORM\EntityRepository;
+
+class PlantRepository extends EntityRepository
 {
 }
 

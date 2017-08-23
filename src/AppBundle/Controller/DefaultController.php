@@ -12,24 +12,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
-    }
-  
-    /**
-     * @Route("/info", name="info")
-     */
-    public function informationAction()
-    {
-        return $this->render('default/info.html.twig');
-    }
-  
-    /**
-     * @Route("/contact", name="contact")
-     */
-    public function contactAction()
-    {
-        return $this->render('default/contact.html.twig');
-
+        return $this->render('homeView/index.html.twig');
     }
 }
 

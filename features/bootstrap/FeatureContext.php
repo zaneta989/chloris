@@ -3,8 +3,6 @@
 use AppBundle\DataFixtures\ORM\LoadUserData;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Mink\Exception\ElementNotFoundException;
-use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
@@ -14,6 +12,7 @@ use PHPUnit\Framework\Assert;
 use PlantBundle\DataFixtures\ORM\LoadPlantData;
 use PlantBundle\DataFixtures\ORM\LoadPlantSpecificationData;
 
+/** @noinspection PhpUndefinedClassInspection */
 class FeatureContext extends MinkContext implements Context
 {
     use KernelDictionary;
@@ -35,8 +34,11 @@ class FeatureContext extends MinkContext implements Context
         $executor = new ORMExecutor($entityManager, $purger);
         $executor->execute($loader->getFixtures());
     }
+
     /**
      * @Given /^I am authenticated as "([^"]*)" using "([^"]*)"$/
+     * @param string $username
+     * @param string $password
      */
     public function iAmAuthenticatedAs($username, $password) {
         $this->visit('/login');
@@ -129,10 +131,12 @@ class FeatureContext extends MinkContext implements Context
         Assert::assertNotNull($link,'Link"'.$linkText.'" does not exist in row with text "'.$linkText.'"');
         $link->click();
     }
+
     /**
      *
      * @Then /^the "([^"]*)" option from "([^"]*)" should be selected$/
-     *
+     * @param string $option
+     * @param string $select
      */
     public function theOptionFromShouldBeSelected($option, $select)
     {

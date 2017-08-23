@@ -16,10 +16,13 @@ class PlantSpecificationController extends Controller
 
         $plantsSpecification = $em->getRepository('PlantBundle:PlantSpecification')->findAll();
 
-        return $this->render('PlantSpecification/catalogue.html.twig', ['plants' => $plantsSpecification]);
+        return $this->render('plantSpecification/catalogue.html.twig', ['plants' => $plantsSpecification]);
     }
+
     /**
      * @Route("/catalogue/{id}", name="showPlant")
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction($id)
     {
@@ -29,6 +32,6 @@ class PlantSpecificationController extends Controller
         if (!$plantSpecification) {
             throw $this->createNotFoundException('No plant found for id '.$id);
         }
-        return $this->render('PlantSpecification/show.html.twig',['plant' => $plantSpecification]);
+        return $this->render('plantSpecification/show.html.twig',['plant' => $plantSpecification]);
     }
 }

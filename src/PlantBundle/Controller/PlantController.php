@@ -5,8 +5,7 @@ namespace PlantBundle\Controller;
 use PlantBundle\Entity\Plant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class PlantController extends Controller
 {
@@ -20,10 +19,13 @@ class PlantController extends Controller
 
         $plants= $em->getRepository('PlantBundle:Plant')->findBy(['owner' => $user->getId()]);
 
-        return $this->render('Plant/index.html.twig', ['plants' => $plants]);
+        return $this->render('plant/index.html.twig', ['plants' => $plants]);
     }
+
     /**
      * @Route("/add/{id}", name="addPlant")
+     * @param int $id
+     * @return RedirectResponse
      */
     public function addAction($id)
     {
@@ -34,7 +36,7 @@ class PlantController extends Controller
             if ($em->getRepository('PlantBundle:Plant')
                     ->findBy(['owner' => $user->getId(),'plantSpecification' => $id])!=null)
             {
-                $this->addFlash('notice', 'You have this plant in your account');
+                $this->addFlash('error', 'You have this plant in your account');
             }
             else
             {
@@ -48,15 +50,15 @@ class PlantController extends Controller
                 $em->persist($plant);
                 $em->flush();
 
-                $this->addFlash('notice', 'Plant is added to your account');
+                $this->addFlash('sucess', 'plant is added to your account');
             }
         }
         else
         {
-            $this->addFlash('notice', 'You must be logged in');
+            $this->addFlash('error', 'You must be logged in');
         }
 
-        return $this->redirectToRoute('catalogue');;
+        return $this->redirectToRoute('catalogue');
     }
 }
 

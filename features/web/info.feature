@@ -4,5 +4,6 @@ Feature: Information about the site
   I need to be able to enter about the site
 
   Scenario: Entering about the site
-    When I am on "/info"
+    When I am on "/"
+    And I follow "About the site"
     Then I should see "Chloris is a web application,"
