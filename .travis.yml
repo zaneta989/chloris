@@ -8,20 +8,13 @@ env:
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
-  - >
-    curl -L
-    https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m`
-    > docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-
-before_install:
   - sudo /etc/init.d/mysql stop
   - sudo chmod -R 777 .
 
 install: ./docker/up
-
-before_script: sleep 30
 
 script:
   - docker exec -u www-data chloris_php bash -c 'phing build'

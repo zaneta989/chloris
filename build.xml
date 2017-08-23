@@ -14,7 +14,7 @@
                 </then>
                 <else>
                     <echo message="Downloading composer ..." />
-                    <retry retrycount="3">
+                    <retry retryCount="3" retryDelay="5">
                         <exec executable="curl" checkreturn="true" passthru="true">
                             <arg value="https://getcomposer.org/composer.phar" />
                             <arg value="--output" />
@@ -24,22 +24,26 @@
                 </else>
             </if>
         <echo message="Running composer install ..." />
-        <exec executable="php" checkreturn="true" passthru="true">
-            <arg value="composer.phar" />
-            <arg value="install" />
-            <arg value="--no-suggest"/>
-            <arg value="--no-interaction" />
-        </exec>
+        <retry retryCount="3" retryDelay="5">
+            <exec executable="php" checkreturn="true" passthru="true">
+                <arg value="composer.phar" />
+                <arg value="install" />
+                <arg value="--no-suggest"/>
+                <arg value="--no-interaction" />
+            </exec>
+        </retry>
     </target>
     <!-- END -->
     <!-- DOCTRINE -->
     <target name="doctrine" depends="composer">
         <echo message="Drop database ..." />
-        <exec executable="bin/console" checkreturn="true">
-            <arg value="doctrine:database:drop" />
-            <arg value="--if-exists" />
-            <arg value="--force" />
-        </exec>
+        <retry retryCount="3" retryDelay="5">
+            <exec executable="bin/console" checkreturn="true">
+                <arg value="doctrine:database:drop" />
+                <arg value="--if-exists" />
+                <arg value="--force" />
+            </exec>
+        </retry>
         <echo message="Creating database ..." />
         <exec executable="bin/console" checkreturn="true">
             <arg value="doctrine:database:create" />
