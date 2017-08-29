@@ -4,5 +4,6 @@ Feature: Contact
   I need to be able to enter contact
 
   Scenario: Entering contact
-    When I am on "/contact"
+    When I am on "/"
+    And I follow "Contact"
     Then I should see "admin@gchloris.com"

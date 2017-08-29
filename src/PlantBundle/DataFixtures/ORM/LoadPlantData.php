@@ -3,10 +3,12 @@
 namespace PlantBundle\DataFixtures\ORM;
 
 
+use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PlantBundle\Entity\Plant;
+use PlantBundle\Entity\PlantSpecification;
 
 class LoadPlantData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -17,6 +19,10 @@ class LoadPlantData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        /**
+         * @var User $user
+         * @var PlantSpecification $plantS
+         */
         $user = $this->getReference('flower-user');
         $plantS = $this->getReference('agawa');
 

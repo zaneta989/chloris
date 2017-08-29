@@ -3,7 +3,7 @@ namespace PlantBundle\Entity;
 use AppBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 /**
- * Plant
+ * plant
  *
  * @ORM\Table(name="plant")
  * @ORM\Entity(repositoryClass="PlantBundle\Repository\PlantRepository")

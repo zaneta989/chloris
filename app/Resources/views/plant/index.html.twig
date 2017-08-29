@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if plants|length == 0 %}
+        <p><b>You don't have any plants.</b></p>
+        <p>Add plants in Catalogue of plants</p>
+    {% else %}
+        <h1>My plants</h1><br>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tr>
+                    <th>Lp.</th>
+                    <th>Name</th>
+                    <th>How many days watered</th>
+                    <th>How many times a day watered</th>
+                    <th>Amount in liters</th>
+                    <th>Is watered</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for plant in plants %}
+                    <tr>
+                        <td>{{ plant.plantSpecification.id }}</td>
+                        <td>{{ plant.plantSpecification.name }}</td>
+                        <td>{{ plant.plantSpecification.frequencyDays }}</td>
+                        <td>{{ plant.plantSpecification.frequency }}</td>
+                        <td>{{ plant.plantSpecification.amount}}</td>
+                        {% if plant.isWatered %}
+                            <td>yes</td>
+                        {% else %}
+                            <td>no</td>
+                        {% endif %}
+                        <td><a href="{{ path('showPlant', {'id': plant.plantSpecification.id}) }}">show</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

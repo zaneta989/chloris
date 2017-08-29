@@ -1,26 +1,43 @@
-{% extends '::base.html.twig' %}
+{% extends ':homeView:base.html.twig' %}
+{% block body_head %}
+{% endblock %}
 {% block body %}
-    <div class="article">
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
-            {% endif %}
-        </div>
+    <section id="login" class="centered-outer">
+        <div class="container centered-inner" >
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong class="">
+                                {% block fos_page_title %}Login{% endblock %}
+                            </strong>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                {% endif %}
+                            </div>
 
-        {% if app.request.hasPreviousSession %}
-            {% for type, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                    <div class="flash-{{ type }}">
-                        {{ message }}
+                            {% if app.request.hasPreviousSession %}
+                                {% for type, messages in app.session.flashbag.all() %}
+                                    {% for message in messages %}
+                                        <div class="flash-{{ type }}">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+
+                            <div>
+                                {% block fos_user_content %}
+                                {% endblock fos_user_content %}
+                            </div>
+                        </div>
                     </div>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
-
-        <div>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 {% endblock %}
 
