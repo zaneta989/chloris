@@ -29,10 +29,6 @@ class Plant
      */
     private $owner;
     /**
-     * @ORM\ManyToOne(targetEntity="PlantBundle\Entity\PlantSpecification")
-     */
-    private $plantSpecification;
-    /**
      * Get id
      *
      * @return int
@@ -82,30 +78,6 @@ class Plant
     public function setOwner($owner)
     {
         $this->owner = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Get plantSpecification
-     *
-     * @return PlantSpecification
-     */
-    public function getPlantSpecification()
-    {
-        return $this->plantSpecification;
-    }
-
-    /**
-     * Set plantSpecification
-     *
-     * @param PlantSpecification $plantSpecification
-     *
-     * @return Plant
-     */
-    public function setPlantSpecification($plantSpecification)
-    {
-        $this->plantSpecification = $plantSpecification;
 
         return $this;
     }
