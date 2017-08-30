@@ -3,7 +3,6 @@ easy_admin:
     design:
         menu:
         - User
-        - PlantSpecification
         - { label: 'Go to homepage', route: 'homepage' }
         color_scheme: 'light'
     entities:
@@ -26,38 +25,3 @@ easy_admin:
                     - { property: 'plainPassword', label: 'Password', type: 'password', type_options: { required: true} }
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } } }
                 form_options: { validation_groups: ['Registration'] }
-        PlantSpecification:
-            class: PlantBundle\Entity\PlantSpecification
-            controller: PlantBundle\Controller\PlantSpecificationAdminController
-            label: 'Plant Specification'
-            list:
-                title: 'Plant Specification'
-                fields:
-                    - property: 'name'
-                    - property: 'latinName'
-                    - property: 'description'
-                    - property: 'frequency'
-                    - property: 'frequencyDays'
-                    - property: 'amount'
-                    - property: 'place'
-                    - property: 'author'
-            new:
-                title: 'Add Plant Specification'
-                fields:
-                    - property: 'name'
-                    - property: 'latinName'
-                    - property: 'description'
-                    - property: 'frequency'
-                    - property: 'frequencyDays'
-                    - property: 'amount'
-                    - property: 'place'
-            edit:
-                title: 'Edit Plant Specification'
-                fields:
-                    - property: 'name'
-                    - property: 'latinName'
-                    - property: 'description'
-                    - property: 'frequency'
-                    - property: 'frequencyDays'
-                    - property: 'amount'
-                    - property: 'place'

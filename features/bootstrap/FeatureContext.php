@@ -27,7 +27,6 @@ class FeatureContext extends MinkContext implements Context
         $entityManager = $this->getContainer()->get('doctrine.orm.entity_manager');
         $loader = new Loader();
         $loader->addFixture(new LoadUserData());
-        $loader->addFixture(new LoadPlantSpecificationData);
         $loader->addFixture(new LoadPlantData);
         $purger = new ORMPurger();
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_DELETE);
