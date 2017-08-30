@@ -21,44 +21,5 @@ class PlantController extends Controller
 
         return $this->render('plant/index.html.twig', ['plants' => $plants]);
     }
-
-    /**
-     * @Route("/add/{id}", name="addPlant")
-     * @param int $id
-     * @return RedirectResponse
-     */
-    public function addAction($id)
-    {
-        $user=$this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        if($user!=null)
-        {
-            if ($em->getRepository('PlantBundle:Plant')
-                    ->findBy(['owner' => $user->getId(),'plantSpecification' => $id])!=null)
-            {
-                $this->addFlash('error', 'You have this plant in your account');
-            }
-            else
-            {
-                $plantSpecification= $em->getRepository('PlantBundle:PlantSpecification')->find($id);
-
-                $plant = new Plant();
-                $plant->setPlantSpecification($plantSpecification);
-                $plant->setOwner($user);
-                $plant->setIsWatered(false);
-
-                $em->persist($plant);
-                $em->flush();
-
-                $this->addFlash('sucess', 'plant is added to your account');
-            }
-        }
-        else
-        {
-            $this->addFlash('error', 'You must be logged in');
-        }
-
-        return $this->redirectToRoute('catalogue');
-    }
 }
 
