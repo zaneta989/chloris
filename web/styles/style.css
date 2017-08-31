@@ -39,13 +39,13 @@ footer {
     border: 0;
     font-size: 11px !important;
     letter-spacing: 4px;
-    opacity:0.6;
+    opacity: 0.6;
 }
 .navbar li a, .navbar .navbar-brand {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 .navbar-nav li a:hover {
-    color: #8ca6af;
+    color: #8ca6af !important;
 }
 .navbar-nav li.active a {
     color: #ffffff;
