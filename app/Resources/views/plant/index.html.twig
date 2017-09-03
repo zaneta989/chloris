@@ -15,6 +15,7 @@
                     <th>Amount in liters</th>
                     <th>Last day watered</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 {% for plant in plants %}
                     <tr>
@@ -28,6 +29,7 @@
                         <td>{{ plant.amount}}</td>
                         <td>{{ plant.dateLastWatered.format('Y-m-d') }}</td>
                         <td><a href="{{ path('showPlant', {'id': plant.id}) }}">show</a></td>
+                        <td><a href="{{ path('plantSetWatered', {'id': plant.id}) }}">watered today</a></td>
                     </tr>
                 {% endfor %}
             </table>
