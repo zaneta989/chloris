@@ -21,5 +21,16 @@ class PlantController extends Controller
 
         return $this->render('plant/index.html.twig', ['plants' => $plants]);
     }
+    /**
+     * @Route("/my-plants/{id}", name="showPlant")
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $plant= $em->getRepository('PlantBundle:Plant')->find($id);
+
+        return $this->render('plant/show.html.twig', ['plant' => $plant]);
+    }
 }
 
