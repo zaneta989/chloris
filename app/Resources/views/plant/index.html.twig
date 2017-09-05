@@ -11,26 +11,23 @@
                 <tr>
                     <th>Lp.</th>
                     <th>Name</th>
-                    <th>How many days watered</th>
-                    <th>How many times a day watered</th>
+                    <th>When</th>
                     <th>Amount in liters</th>
-                    <th>Is watered</th>
-                    <th></th>
+                    <th>Last day watered</th>
                     <th></th>
                 </tr>
                 {% for plant in plants %}
                     <tr>
-                        <td>{{ plant.plantSpecification.id }}</td>
-                        <td>{{ plant.plantSpecification.name }}</td>
-                        <td>{{ plant.plantSpecification.frequencyDays }}</td>
-                        <td>{{ plant.plantSpecification.frequency }}</td>
-                        <td>{{ plant.plantSpecification.amount}}</td>
-                        {% if plant.isWatered %}
-                            <td>yes</td>
+                        <td>{{ plant.id }}</td>
+                        <td>{{ plant.name }}</td>
+                        {% if plant.isDaily==true %}
+                            <td>{{ plant.frequency }} times a day</td>
                         {% else %}
-                            <td>no</td>
+                            <td>every {{ plant.frequency }} day</td>
                         {% endif %}
-                        <td><a href="{{ path('showPlant', {'id': plant.plantSpecification.id}) }}">show</a></td>
+                        <td>{{ plant.amount}}</td>
+                        <td>{{ plant.dateLastWatered.format('Y-m-d') }}</td>
+                        <td><a href="{{ path('showPlant', {'id': plant.id}) }}">show</a></td>
                     </tr>
                 {% endfor %}
             </table>

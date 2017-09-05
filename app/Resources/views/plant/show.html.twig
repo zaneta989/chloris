@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="article">
+                <h1>Details of the plant</h1><br>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ plant.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ plant.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Place</th>
+                            <td>{{ plant.place }}</td>
+                        </tr>
+                        <tr>
+                            <th>When</th>
+                                {% if plant.isDaily==true %}
+                            <td>{{  plant.frequency }} times a day</td>
+                            {% else %}
+                                <td>every {{ plant.frequency }} day</td>
+                            {% endif %}
+                        </tr>
+                        <tr>
+                            <th>Amount in liters</th>
+                            <td>{{ plant.amount }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last day watered</th>
+                            <td>{{ plant.dateLastWatered.format('Y-m-d') }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
