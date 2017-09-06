@@ -5,6 +5,8 @@ namespace PlantBundle\Entity;
 use AppBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Boolean;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Plant
@@ -27,6 +29,7 @@ class Plant
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -47,7 +50,8 @@ class Plant
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateLastWatered", type="datetime", nullable=true)
+     * @ORM\Column(name="dateLastWatered", type="datetime")
+     * @Assert\NotBlank()
      */
     private $dateLastWatered;
 
@@ -55,6 +59,7 @@ class Plant
      * @var float
      *
      * @ORM\Column(name="amount", type="float")
+     * @Assert\NotBlank()
      */
     private $amount;
 
@@ -62,6 +67,7 @@ class Plant
      * @var int
      *
      * @ORM\Column(name="frequency", type="integer")
+     * @Assert\NotBlank()
      */
     private $frequency;
 
@@ -80,6 +86,7 @@ class Plant
     public function __construct()
     {
         $this->isDaily=false;
+        $this->dateLastWatered=new \DateTime();
     }
 
     /**

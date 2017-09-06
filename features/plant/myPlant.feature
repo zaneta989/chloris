@@ -3,6 +3,10 @@ Feature: Show my plant
   As a user
   I need to be able to enter My plants
 
+  Scenario: Showing my plants, if you not log in
+    When I am on "/my-plants"
+    Then I should see "You must be logged in"
+
   Scenario: Showing my plants, if you don't have any plants
     Given I am authenticated as "test" using "test"
     When I am on "/my-plants"

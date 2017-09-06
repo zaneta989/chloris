@@ -24,84 +24,75 @@ class LoadPlantData extends AbstractFixture implements OrderedFixtureInterface
         $user = $this->getReference('admin-user');
 
         $plant = new Plant();
-        $plant->setName("Azalia");;
-        $plant->setDescription("plant naturally occurs in Asia");
-        $plant->setFrequency(2);
-        $plant->setIsDaily(true);
-        $plant->setAmount(0.15);
-        $plant->setPlace("Garden");
-        $plant->setDateLastWatered(new \DateTime());
-        $plant->setOwner($user);
+        $plant  ->setName("Azalia")
+                ->setDescription("plant naturally occurs in Asia")
+                ->setFrequency(2)
+                ->setIsDaily(true)
+                ->setAmount(0.15)
+                ->setPlace("Garden")
+                ->setOwner($user);
         $manager->persist($plant);
 
         $plant = new Plant();
-        $plant->setName("cactus");;
-        $plant->setFrequency(14);
-        $plant->setAmount(0.5);
-        $plant->setDateLastWatered(new \DateTime());
-        $plant->setOwner($user);
+        $plant  ->setName("cactus")
+                ->setFrequency(14)
+                ->setAmount(0.5)
+                ->setOwner($user);
         $manager->persist($plant);
 
         $plant = new Plant();
-        $plant->setName("orchidea");;
-        $plant->setFrequency(7);
-        $plant->setAmount(0.75);
-        $plant->setDateLastWatered(new \DateTime());
-        $plant->setOwner($user);
+        $plant  ->setName("orchidea")
+                ->setFrequency(7)
+                ->setAmount(0.75)
+                ->setOwner($user);
         $manager->persist($plant);
 
         $user = $this->getReference('flower-user');
 
         $plant = new Plant();
-        $plant->setName("cactus");;
-        $plant->setFrequency(10);
-        $plant->setAmount(0.33);
-        $plant->setPlace("shelf");
-        $plant->setDateLastWatered(new \DateTime());
-        $plant->setOwner($user);
+        $plant  ->setName("cactus")
+                ->setFrequency(10)
+                ->setAmount(0.33)
+                ->setPlace("shelf")
+                ->setOwner($user);
         $manager->persist($plant);
 
         $plant = new Plant();
-        $plant->setName("cactus");;
-        $plant->setFrequency(21);
-        $plant->setAmount(0.4);
-        $plant->setPlace("window");
-        $plant->setDateLastWatered(new \DateTime());
-        $plant->setOwner($user);
+        $plant  ->setName("cactus")
+                ->setFrequency(21)
+                ->setAmount(0.4)
+                ->setPlace("window")
+                ->setOwner($user);
         $manager->persist($plant);
 
         $user = $this->getReference('flower_sun-user');
 
         $plant = new Plant();
-        $plant->setName("basil");;
-        $plant->setFrequency(1);
-        $plant->setAmount(0.25);
-        $plant->setDescription("watering at the night");
-        $plant->setDateLastWatered(new \DateTime());
-        $plant->setOwner($user);
+        $plant  ->setName("basil")
+                ->setFrequency(1)
+                ->setAmount(0.25)
+                ->setDescription("watering at the night")
+                ->setOwner($user);
         $manager->persist($plant);
 
         $plant = new Plant();
-        $plant->setName("rosemary");;
-        $plant->setFrequency(2);
-        $plant->setAmount(0.2);
-        $plant->setPlace("window");
-        $plant->setDateLastWatered(new \DateTime());
-        $plant->setOwner($user);
+        $plant  ->setName("rosemary")
+                ->setFrequency(2)
+                ->setAmount(0.2)
+                ->setPlace("window")
+                ->setOwner($user);
         $manager->persist($plant);
 
         $user = $this->getReference('test_user-user');
 
         $plant = new Plant();
-        $plant->setName("fern");;
-        $plant->setFrequency(3);
-        $plant->setAmount(0.25);
-        $plant->setDateLastWatered(new \DateTime());
-        $plant->setOwner($user);
+        $plant  ->setName("fern")
+                ->setFrequency(3)
+                ->setAmount(0.25)
+                ->setOwner($user);
         $manager->persist($plant);
 
         $manager->flush();
-
     }
     public function getOrder()
     {
