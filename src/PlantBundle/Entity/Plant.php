@@ -288,5 +288,11 @@ class Plant
         $this->owner = $owner;
         return $this;
     }
+
+    public function moveToToday()
+    {
+        $this->dateLastWatered= new \DateTime;
+        return $this;
+    }
 }
 
