@@ -8,6 +8,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use PlantBundle\Entity\Plant;
+use DateTime;
 
 class LoadPlantData extends AbstractFixture implements OrderedFixtureInterface
 {

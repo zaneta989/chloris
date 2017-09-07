@@ -44,9 +44,8 @@ class PlantType extends AbstractType
                 'html5' => false,
                 'required' => false,
                 'label' => 'Date last watered',
-            ));
+                ));
     }
-
     /**
      * @param OptionsResolver $resolver
      */

@@ -19,6 +19,7 @@
                     <li><a href="{{ path('admin') }}">Managament</a></li>
                 {% endif %}
                 {% if is_granted('ROLE_USER') %}
+                    {{ mgilet_notification_render({ 'display': 'dropdown' }) }}
                     <li class="dropdown">
                         <a
                             href="#"

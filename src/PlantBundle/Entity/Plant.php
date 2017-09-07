@@ -3,9 +3,8 @@
 namespace PlantBundle\Entity;
 
 use AppBundle\Entity\User;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Boolean;
-use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -48,10 +47,11 @@ class Plant
     private $description;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="dateLastWatered", type="datetime")
      * @Assert\NotBlank()
+     * @Assert\LessThanOrEqual("today")
      */
     private $dateLastWatered;
 
@@ -68,6 +68,7 @@ class Plant
      *
      * @ORM\Column(name="frequency", type="integer")
      * @Assert\NotBlank()
+     * @Assert\GreaterThan(0)
      */
     private $frequency;
 
@@ -82,6 +83,19 @@ class Plant
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="plants")
      */
     private $owner;
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="date_last_notifaction", type="datetime")
+     */
+    private $dateLastNotifaction;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="$remaining", type="integer")
+     */
+    private $remaining;
 
     /**
      * Plant constructor.
@@ -89,7 +103,10 @@ class Plant
     public function __construct()
     {
         $this->isDaily = false;
-        $this->dateLastWatered = new \DateTime();
+        $this->dateLastWatered = new DateTime('now');
+        $this->dateLastNotifaction = new DateTime('2000-09-10');
+        $this->dateLastWatered->setTime(12,12,12);
+        $this->remaining=0;
     }
 
     /**
@@ -189,9 +206,33 @@ class Plant
     }
 
     /**
+     * Get dateLastNotification
+     *
+     * @return DateTime
+     */
+    public function getDateLastNotifaction()
+    {
+        return $this->dateLastNotifaction;
+    }
+
+    /**
+     * Set dateLastNotification
+     *
+     * @param DateTime $dateLastNotification
+     *
+     * @return Plant
+     */
+    public function setDateLastNotifaction($dateLastNotification)
+    {
+        $this->dateLastNotifaction = $dateLastNotification;
+
+        return $this;
+    }
+
+    /**
      * Get dateLastWatered
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDateLastWatered()
     {
@@ -232,7 +273,10 @@ class Plant
     public function setFrequency($frequency)
     {
         $this->frequency = $frequency;
-
+        if($this->isDaily)
+        {
+            $this->remaining=$frequency;
+        }
         return $this;
     }
 
@@ -256,6 +300,10 @@ class Plant
     public function setIsDaily($isDaily)
     {
         $this->isDaily = $isDaily;
+        if($this->isDaily)
+        {
+            $this->remaining = $this->frequency;
+        }
         return $this;
     }
 
@@ -289,15 +337,29 @@ class Plant
     public function setOwner(User $owner)
     {
         $this->owner = $owner;
+        $owner->addPlant($this);
         return $this;
     }
 
     /**
+     * Get remaining
+     *
+     * @return int
+     */
+    public function getRemaining()
+    {
+        return $this->remaining;
+    }
+
+    /**
+     * Set remaining
+     *
+     * @param int $remaining
      * @return Plant
      */
-    public function moveToToday()
+    public function setRemaining($remaining)
     {
-        $this->dateLastWatered= new \DateTime;
+        $this->remaining=$remaining;
         return $this;
     }
 }

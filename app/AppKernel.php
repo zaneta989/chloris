@@ -18,7 +18,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
-            new PlantBundle\PlantBundle()
+            new PlantBundle\PlantBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
