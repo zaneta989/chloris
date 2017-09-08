@@ -1,9 +1,11 @@
 .container-head{
     padding-top: 10%;
 }
+
 .container h1{
     letter-spacing: 6px;
 }
+
 .bar-at-top{
     background-image: url("/../images/leaf.jpg");
     background-size: cover;
@@ -11,6 +13,7 @@
     padding: 0;
     margin: 0;
 }
+
 .jumbotron {
     background-image: url("/../images/leaf.jpg");
     background-size: cover;
@@ -20,6 +23,7 @@
     margin: 0;
     letter-spacing: 4px;
 }
+
 footer {
     background-color: #0a1f27;
     color: white;
@@ -30,9 +34,11 @@ footer {
     padding: 10px;
     box-sizing: border-box;
 }
+
 .center-block{
     text-align: center;
 }
+
 .navbar {
     margin-bottom: 0;
     background-color: #04090D;
@@ -41,30 +47,37 @@ footer {
     letter-spacing: 4px;
     opacity: 0.6;
 }
+
 .navbar li a, .navbar .navbar-brand {
     color: #ffffff !important;
 }
+
 .navbar-nav li a:hover {
     color: #8ca6af !important;
 }
+
 .navbar-nav li.active a {
     color: #ffffff;
-    background-color:#29292c;
+    background-color: #29292c;
 }
+
 .navbar-default .navbar-toggle {
     border-color: transparent;
 }
+
 .open .dropdown-toggle {
     color: #ffffff;
     background-color: #04090D !important;
     opacity: 0.3 !important;
     font-size: 11px !important;
 }
+
 .dropdown-menu{
     background-color: #04090D !important;
     opacity: 0.3 !important;
     font-size: 11px !important;
 }
+
 .img-circle {
     border: 10px solid transparent;
     margin-bottom: 25px;
@@ -72,6 +85,7 @@ footer {
     height: 70%;
     opacity: 0.7;
 }
+
 section
 {
     width: 100%;
@@ -79,11 +93,13 @@ section
     padding: 20px 0;
     margin: 0;
 }
+
 section.background-light {
     background-color: #f6f6f6;
     color: #333;
     padding: 80px 120px;
 }
+
 section.background-dark
 {
     background-color: #0a1f27;
@@ -96,16 +112,19 @@ body{
     padding: 0;
     margin: 0;
 }
+
 .panel-default {
     opacity: 0.9;
-    margin-top:40px;
+    margin-top: 40px;
     width: 100%;
 }
+
 .form-group.last {
-    margin-bottom:0;
-    margin-top:40px;
+    margin-bottom: 0;
+    margin-top: 40px;
     width: 100%;
 }
+
 section#login
 {
     background-size: cover;

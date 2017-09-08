@@ -83,10 +83,13 @@ class Plant
      */
     private $owner;
 
+    /**
+     * Plant constructor.
+     */
     public function __construct()
     {
-        $this->isDaily=false;
-        $this->dateLastWatered=new \DateTime();
+        $this->isDaily = false;
+        $this->dateLastWatered = new \DateTime();
     }
 
     /**
@@ -174,7 +177,7 @@ class Plant
     /**
      * Set dateLastWatered
      *
-     * @param \DateTime $dateLastWatered
+     * @param DateTime $dateLastWatered
      *
      * @return Plant
      */
@@ -266,7 +269,6 @@ class Plant
         return $this->isDaily;
     }
 
-
     /**
      * Get owner
      *
@@ -276,6 +278,7 @@ class Plant
     {
         return $this->owner;
     }
+
     /**
      * Set owner
      *
@@ -289,6 +292,9 @@ class Plant
         return $this;
     }
 
+    /**
+     * @return Plant
+     */
     public function moveToToday()
     {
         $this->dateLastWatered= new \DateTime;

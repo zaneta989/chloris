@@ -110,6 +110,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 
         $manager->flush();
     }
+
+    /**
+     * @return int
+     */
     public function getOrder()
     {
         return 1;
