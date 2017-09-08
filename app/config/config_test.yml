@@ -18,4 +18,3 @@ swiftmailer:
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: plaintext
-

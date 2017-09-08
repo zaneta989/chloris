@@ -1,6 +1,6 @@
 <?php
 
-namespace PlantBundle\Form;
+namespace PlantBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -15,38 +15,40 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class PlantType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', TextType::class, array(
-                'label'=>'name'))
+                'label'=>'Name'))
             ->add('place', TextareaType::class, array(
-                'label'=>'place',
+                'label'=>'Place',
                 'required'=>false ))
             ->add('description', TextareaType::class, array(
-                'label'=>'description',
+                'label'=>'Description',
                 'required'=>false ))
             ->add('frequency', IntegerType::class, array(
-                'label'=>'frequency'))
+                'label'=>'Frequency'))
             ->add('isDaily', ChoiceType::class, array(
-                'label'    => 'type frequency',
+                'label'    => 'Frequency type',
                 'choices'  => array(
                     'every x days' => false,
-                    'evrey day' => true)))
+                    'times a day' => true)))
             ->add('amount', NumberType::class, array(
-                'label'=>'amount'))
+                'label'=>'Amount'))
             ->add('dateLastWatered', DateType::class, array(
                 'input' => 'datetime',
                 'widget' => 'single_text',
                 'html5' => false,
                 'required' => false,
-                'label' => 'date last watered',
+                'label' => 'Date last watered',
             ));
     }
+
     /**
-     * {@inheritdoc}
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -62,7 +64,5 @@ class PlantType extends AbstractType
     {
         return 'plantbundle_plant';
     }
-
-
 }
 
