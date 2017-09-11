@@ -4,11 +4,14 @@ namespace PlantBundle\Controller;
 
 use PlantBundle\Entity\Plant;
 use PlantBundle\Form\Type\PlantType;
+use PlantBundle\Service\NotificationSender;
+use PlantBundle\Service\PlantWatered;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PlantController extends Controller
 {
@@ -18,6 +21,7 @@ class PlantController extends Controller
      */
     public function indexAction()
     {
+
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))
         {
             $this->addFlash('error', 'You must be logged in.');
@@ -32,10 +36,14 @@ class PlantController extends Controller
             'owner' => $user->getId()
         ]);
 
+        $notification = new NotificationSender();
+        $em->persist($notification->sendNotification($user));
+        $em->flush();
         return $this->render('plant/index.html.twig', [
             'plants' => $plants
         ]);
-    }
+
+}
 
     /**
      * @Route("/my-plants/{id}", name="showPlant")
@@ -50,10 +58,11 @@ class PlantController extends Controller
 
         if ($plant === null)
         {
-            $this->addFlash('error', 'Could not find plant');
-
-            return $this->redirectToRoute('homepage');
+            throw new NotFoundHttpException();
         }
+        $notification = new NotificationSender();
+        $em->persist($notification->sendNotification($this->getUser()));
+        $em->flush();
         return $this->render('plant/show.html.twig', [
             'plant' => $plant
         ]);
@@ -66,6 +75,7 @@ class PlantController extends Controller
      */
     public function addAction(Request $request)
     {
+
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))
         {
             $this->addFlash('error', 'You must be logged in.');
@@ -139,12 +149,12 @@ class PlantController extends Controller
     }
 
     /**
-     * @Route("/plant/setWatered/{id}", name="plantSetWatered")
+     * @Route("/my-plants/plant/watered-plant/{id}", name="plantSetWatered")
      * @param Request $request
      * @param int     $id
      * @return RedirectResponse
      */
-    public function setTodayAction(Request $request, $id)
+    public function wateredPlantAction(Request $request, $id)
     {
         $user = $this->getUser();
         $plant = $this->getDoctrine()
@@ -159,11 +169,23 @@ class PlantController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($plant->moveToToday());
-        $em->flush();
+        $plantWatered = new PlantWatered();
 
-        $this->addFlash('sucess',  'The plant was watered today');
-
+        if($plantWatered->checkIfCouldWateredPlant($plant))
+        {
+            $notificationToRemove = $user->findNotaficationBySubject($plant->getName());
+            if($notificationToRemove!=null)
+            {
+                $user = $user->removeNotification($notificationToRemove);
+            }
+            $em->persist($plantWatered->wateringPlant($plant));
+            $em->flush();
+            $this->addFlash('sucess',  'The plant was watered today');
+        }
+        else
+        {
+            $this->addFlash('error',  'The plant was enough watered today');
+        }
         return $this->redirect( $request->headers->get('referer') );
     }
 }
