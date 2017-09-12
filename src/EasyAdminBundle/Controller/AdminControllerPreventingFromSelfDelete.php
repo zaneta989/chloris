@@ -1,14 +1,14 @@
 <?php
 
-namespace AppBundle\Controller\Admin;
+namespace EasyAdminBundle\Controller;
 
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
-use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
+use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController;
 use JavierEguiluz\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 use JavierEguiluz\Bundle\EasyAdminBundle\Exception\EntityRemoveException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class UserController extends BaseAdminController
+class AdminControllerPreventingFromSelfDelete extends AdminController
 {
 
     /**
