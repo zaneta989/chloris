@@ -3,14 +3,10 @@ Feature: Add plant to user account
   As a user
   I need to be able to enter Add Plant
 
-  Scenario: Adding plants, if you not log in
-    When I am on "/plant/add"
-    Then I should see "You must be logged in"
-
   @database
   Scenario: Adding plants with required field
     Given I am authenticated as "test" using "test"
-    When I am on "/plant/add"
+    When I am on "plant/new"
     And I fill in "Name" with "flower"
     And I fill in "Frequency" with "4"
     And I fill in "Amount" with "0.25"
@@ -23,7 +19,7 @@ Feature: Add plant to user account
   @database
   Scenario: Adding plants with all field
     Given I am authenticated as "test" using "test"
-    When I am on "/plant/add"
+    When I am on "plant/new"
     And I fill in "Name" with "flower"
     And I fill in "Frequency" with "4"
     And I fill in "Amount" with "0.25"
@@ -40,21 +36,13 @@ Feature: Add plant to user account
 
   Scenario: Adding plants with blank required field
     Given I am authenticated as "admin" using "admin"
-    When I am on "/plant/add"
+    When I am on "plant/new"
     And I press "Add"
     Then I should see "This value should not be blank."
 
-  Scenario: Show details of plant
-    Given I am authenticated as "admin" using "admin"
-    When I am on "/my-plants"
-    And I should see "My plants"
-    And I click "show" in the "cactus" row
-    Then I should see "Details of the plant"
-    And I should see "cactus"
-
   Scenario: Adding plants and back to my plants
     Given I am authenticated as "test" using "test"
-    When I am on "/plant/add"
+    When I am on "plant/new"
     And I fill in "Name" with "flower"
     And I fill in "Frequency" with "4"
     And I fill in "Amount" with "0.25"

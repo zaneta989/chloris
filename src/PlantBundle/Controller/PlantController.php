@@ -16,19 +16,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PlantController extends Controller
 {
     /**
-     * @Route("/my-plants", name="myPlants")
+     * @Route("/plant/all", name="myPlants")
      * @return Response
      */
     public function indexAction()
     {
-
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))
-        {
-            $this->addFlash('error', 'You must be logged in.');
-
-            return $this->redirectToRoute('fos_user_security_login');
-        }
-
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
 
@@ -42,46 +34,14 @@ class PlantController extends Controller
         return $this->render('plant/index.html.twig', [
             'plants' => $plants
         ]);
-
-}
-
-    /**
-     * @Route("/my-plants/{id}", name="showPlant")
-     * @param int $id
-     * @return RedirectResponse|Response
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $plant = $em->getRepository('PlantBundle:Plant')->find($id);
-
-        if ($plant === null)
-        {
-            throw new NotFoundHttpException();
-        }
-        $notification = new NotificationSender();
-        $em->persist($notification->sendNotification($this->getUser()));
-        $em->flush();
-        return $this->render('plant/show.html.twig', [
-            'plant' => $plant
-        ]);
     }
-
     /**
-     * @Route("/plant/add", name="addPlant")
+     * @Route("/plant/new", name="addPlant")
      * @param Request $request
      * @return RedirectResponse|Response
      */
     public function addAction(Request $request)
     {
-
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))
-        {
-            $this->addFlash('error', 'You must be logged in.');
-
-            return $this->redirectToRoute('fos_user_security_login');
-        }
 
         $user = $this->getUser();
         $plant = new Plant();
@@ -104,6 +64,29 @@ class PlantController extends Controller
         return $this->render('plant/add.html.twig', [
             'plant' => $plant,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/plant/{id}", name="showPlant")
+     * @param int $id
+     * @return RedirectResponse|Response
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $plant = $em->getRepository('PlantBundle:Plant')->find($id);
+
+        if ($plant === null)
+        {
+            throw new NotFoundHttpException();
+        }
+        $notification = new NotificationSender();
+        $em->persist($notification->sendNotification($this->getUser()));
+        $em->flush();
+        return $this->render('plant/show.html.twig', [
+            'plant' => $plant
         ]);
     }
 
@@ -149,7 +132,7 @@ class PlantController extends Controller
     }
 
     /**
-     * @Route("/my-plants/plant/watered-plant/{id}", name="plantSetWatered")
+     * @Route("/plant/{id}/watered", name="plantSetWatered")
      * @param Request $request
      * @param int     $id
      * @return RedirectResponse
