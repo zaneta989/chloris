@@ -35,12 +35,16 @@
             </tr>
             <tr>
                 <th></th>
-                <td><a href="{{ path('plantSetWatered', {'id': plant.id}) }}">watered today</a></td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('plantSetWatered', {'id': plant.id}) }}" name="watered">
+                        <span class="glyphicon glyphicon-tint"></span>
+                    </a>
+                </td>
             </tr>
         </table>
     </div>
 
-    <a href="{{ path('myPlants') }}"> Back to My Plant </a> <br>
-    <a href="{{ path('plantEdit', {'id': plant.id}) }}"> Edit </a>
+    <a class="btn btn-success" href="{{ path('plantEdit', {'id': plant.id}) }}">Edit</a>
+    <a class="btn btn-default" href="{{ path('myPlants') }}">Back to My Plant</a>
 
 {% endblock %}

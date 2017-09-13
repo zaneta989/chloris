@@ -52,22 +52,3 @@ Feature: Edit plant
     Then I should not see the following text in row:
       | Name   | When        | Amount in liters |
       | flower | every 4 day | 0.25             |
-
-  Scenario: Change date last watered in my plants
-    Given I am authenticated as "admin" using "admin"
-    When I am on "/my-plants"
-    And I click "watered today" in the "Azalia" row
-    Then I should see "The plant was watered today"
-
-  Scenario: Change date last watered in show index
-    Given I am authenticated as "admin" using "admin"
-    When I am on "/my-plants"
-    And I click "show" in the "Azalia" row
-    And I follow "watered today"
-    Then I should see "The plant was watered today"
-
-  Scenario: Change date last watered in my plants if plan was watered
-    Given I am authenticated as "admin" using "admin"
-    When I am on "/my-plants"
-    And I click "watered today" in the "Azalia" row
-    Then I should see "The plant was enough watered today"
