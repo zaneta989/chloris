@@ -28,8 +28,12 @@
                         {% endif %}
                         <td>{{ plant.amount}}</td>
                         <td>{{ plant.dateLastWatered.format('Y-m-d') }}</td>
-                        <td><a href="{{ path('showPlant', {'id': plant.id}) }}">show</a></td>
-                        <td><a href="{{ path('plantSetWatered', {'id': plant.id}) }}">watered today</a></td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('plantSetWatered', {'id': plant.id}) }}" name="watered">
+                                <span class="glyphicon glyphicon-tint"></span>
+                            </a>
+                        </td>
+                        <td><a class="btn btn-default" href="{{ path('showPlant', {'id': plant.id}) }}">show</a></td>
                     </tr>
                 {% endfor %}
             </table>
