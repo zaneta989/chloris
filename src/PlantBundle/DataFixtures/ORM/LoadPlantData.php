@@ -39,12 +39,49 @@ class LoadPlantData extends AbstractFixture implements OrderedFixtureInterface
                 ->setFrequency(14)
                 ->setAmount(0.5)
                 ->setOwner($user);
+
+        $dayLastWatered = $plant->getDateLastWatered()
+                                 ->sub(date_interval_create_from_date_string
+                                        ($plant->getFrequency() . ' days')
+                                      );
+        $plant->setDateLastWatered($dayLastWatered);
+
         $manager->persist($plant);
 
         $plant = new Plant();
         $plant  ->setName("orchidea")
                 ->setFrequency(7)
                 ->setAmount(0.75)
+                ->setOwner($user);
+        $manager->persist($plant);
+
+        $dayLastWatered = $plant->getDateLastWatered()
+                                ->sub(date_interval_create_from_date_string
+                                        ($plant->getFrequency()-1 . ' days')
+                                     );
+        $plant->setDateLastWatered($dayLastWatered);
+
+        $manager->persist($plant);
+
+        $plant = new Plant();
+        $plant  ->setName("rosemary")
+                ->setFrequency(2)
+                ->setAmount(0.2)
+                ->setPlace("window")
+                ->setOwner($user);
+
+        $dayLastWatered = $plant->getDateLastWatered()
+                                ->sub(date_interval_create_from_date_string
+                                        ($plant->getFrequency()+1 . ' days')
+                                     );
+        $plant->setDateLastWatered($dayLastWatered);
+
+        $manager->persist($plant);
+
+        $plant = new Plant();
+        $plant  ->setName("fern")
+                ->setFrequency(3)
+                ->setAmount(0.25)
                 ->setOwner($user);
         $manager->persist($plant);
 

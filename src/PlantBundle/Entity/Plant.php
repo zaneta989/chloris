@@ -83,12 +83,6 @@ class Plant
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="plants")
      */
     private $owner;
-    /**
-     * @var DateTime
-     *
-     * @ORM\Column(name="date_last_notifaction", type="datetime")
-     */
-    private $dateLastNotifaction;
 
     /**
      * @var int
@@ -98,15 +92,21 @@ class Plant
     private $remaining;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_notification_send", type="boolean")
+     */
+    private $isNotificationSend;
+
+    /**
      * Plant constructor.
      */
     public function __construct()
     {
         $this->isDaily = false;
         $this->dateLastWatered = new DateTime('now');
-        $this->dateLastNotifaction = new DateTime('2000-09-10');
-        $this->dateLastWatered->setTime(12,12,12);
-        $this->remaining=0;
+        $this->isNotificationSend = false;
+        $this->remaining = 0;
     }
 
     /**
@@ -206,30 +206,6 @@ class Plant
     }
 
     /**
-     * Get dateLastNotification
-     *
-     * @return DateTime
-     */
-    public function getDateLastNotifaction()
-    {
-        return $this->dateLastNotifaction;
-    }
-
-    /**
-     * Set dateLastNotification
-     *
-     * @param DateTime $dateLastNotification
-     *
-     * @return Plant
-     */
-    public function setDateLastNotifaction($dateLastNotification)
-    {
-        $this->dateLastNotifaction = $dateLastNotification;
-
-        return $this;
-    }
-
-    /**
      * Get dateLastWatered
      *
      * @return DateTime
@@ -275,7 +251,7 @@ class Plant
         $this->frequency = $frequency;
         if($this->isDaily)
         {
-            $this->remaining=$frequency;
+            $this->remaining = $frequency;
         }
         return $this;
     }
@@ -315,6 +291,29 @@ class Plant
     public function getIsDaily()
     {
         return $this->isDaily;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $isNotificationSend
+     *
+     * @return Plant
+     */
+    public function setIsNotificationSend($isNotificationSend)
+    {
+        $this->isNotificationSend = $isNotificationSend;
+        return $this;
+    }
+
+    /**
+     * Get isNotificationSend
+     *
+     * @return boolean
+     */
+    public function getIsNotificationSend()
+    {
+        return $this->isNotificationSend;
     }
 
     /**
@@ -359,7 +358,7 @@ class Plant
      */
     public function setRemaining($remaining)
     {
-        $this->remaining=$remaining;
+        $this->remaining = $remaining;
         return $this;
     }
 }

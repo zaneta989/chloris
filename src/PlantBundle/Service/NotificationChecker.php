@@ -14,7 +14,12 @@ class NotificationChecker
     public function designateTheNextWateringDay(Plant $plant)
     {
         $dayNextWatered = new DateTime(date('Y-m-d', $plant->getDateLastWatered()->getTimestamp()));
-        $dayNextWatered=$dayNextWatered->add(date_interval_create_from_date_string($plant->getFrequency() . ' days'));
+        $dayNextWatered = $dayNextWatered->add(
+                                                date_interval_create_from_date_string
+                                                (
+                                                    $plant->getFrequency() . ' days'
+                                                )
+                                              );
         $dayNextWatered = $dayNextWatered->setTime(0, 0, 0);
         return $dayNextWatered;
     }
@@ -26,17 +31,16 @@ class NotificationChecker
     public function checkIfNotificationShouldPop(Plant $plant)
     {
         $today = new DateTime('now');
-        $today=$today->setTime(0,0,0);
-        $notification=$plant->getDateLastNotifaction()->setTime(0,0,0);
+        $today = $today->setTime(0,0,0);
+        $isNotificationSend = $plant->getIsNotificationSend();
 
         if (!$plant->getIsDaily())
         {
-            return $this->designateTheNextWateringDay($plant) <= $today && $notification != $today;
+            return $this->designateTheNextWateringDay($plant) <= $today && !$isNotificationSend;
         }
         else
         {
-            return  $plant->getDateLastNotifaction() < $plant->getDateLastWatered()
-                    && $plant->getRemaining() > 0;
+            return  !$isNotificationSend && $plant->getRemaining() > 0;
         }
     }
 }

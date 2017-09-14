@@ -22,25 +22,29 @@ class NotificationSender
             {
                 if ($plant->getIsDaily())
                 {
-                    $user->addNotification(new Notification('' . $plant->getName(), 'Today You should water ' . $plant->getName() . ' ' . $plant->getRemaining() . ' times a day'));
+                    $user->addNotification(
+                                                new Notification
+                                                (
+                                                    '' . $plant->getName(),
+                                                    'Today You should water ' . $plant->getName() . ' '
+                                                    . $plant->getRemaining() . ' times a day'
+                                                )
+                                            );
                 }
                 else
                 {
-                    $user->addNotification(new Notification('' . $plant->getName(), 'Today You should water ' . $plant->getName()));
+                    $user->addNotification(
+                                                new Notification
+                                                (
+                                                    '' . $plant->getName(),
+                                                    'Today You should water ' . $plant->getName()
+                                                )
+                                            );
                 }
-                $user->getPlants()[$key] = $plant->setDateLastNotifaction(new DateTime('now'));
+                $user->getPlants()[$key] = $plant->setIsNotificationSend(true);
             }
         }
         return $user;
-    }
-
-    /**
-     * @param Plant $plant
-     * @return Plant
-     */
-    public function changeDateLastNotifaction(Plant $plant)
-    {
-        return $plant->setDateLastNotifaction(new DateTime('now'));
     }
 }
 
