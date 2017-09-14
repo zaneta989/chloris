@@ -6,7 +6,7 @@ Feature: Edit plant
   @database
   Scenario: Editing plant with required field
     Given I am authenticated as "admin" using "admin"
-    When I am on "/my-plants"
+    When I am on "/plant/all"
     And I click "show" in the "cactus" row
     And I follow "Edit"
     And I fill in "Name" with "flower"
@@ -16,9 +16,9 @@ Feature: Edit plant
     Then I should see "Plant chnged!"
 
   @database
-  Scenario: Adding plants with all field
+  Scenario: Editing plants with all field
     Given I am authenticated as "admin" using "admin"
-    When I am on "/my-plants"
+    When I am on "/plant/all"
     And I click "show" in the "cactus" row
     And I follow "Edit"
     And I fill in "Name" with "flower"
@@ -29,9 +29,9 @@ Feature: Edit plant
     And I press "Save"
     Then I should see "Plant chnged!"
 
-  Scenario: Adding plants with blank required field
+  Scenario: Editing plants with blank required field
     Given I am authenticated as "admin" using "admin"
-    When I am on "/my-plants"
+    When I am on "/plant/all"
     And I click "show" in the "cactus" row
     And I follow "Edit"
     And I fill in "Name" with ""
@@ -40,9 +40,9 @@ Feature: Edit plant
     And I press "Save"
     Then I should see "This value should not be blank."
 
-  Scenario: Adding plants and back to my plants
+  Scenario: Editing plants and back to my plants
     Given I am authenticated as "admin" using "admin"
-    When I am on "/my-plants"
+    When I am on "/plant/all"
     And I click "show" in the "cactus" row
     And I follow "Edit"
     And I fill in "Name" with "flower"
