@@ -78,7 +78,7 @@ class PlantController extends Controller
 
         $plant = $em->getRepository('PlantBundle:Plant')->find($id);
 
-        if ($plant === null)
+        if ($plant === null || $plant->getOwner() != $this->getUser())
         {
             throw new NotFoundHttpException();
         }
@@ -107,9 +107,7 @@ class PlantController extends Controller
 
         if ($plant == null || $plant->getOwner() != $user)
         {
-            $this->addFlash('error', 'Could not find plant');
-
-            return $this->redirectToRoute('homepage');
+            throw new NotFoundHttpException();
         }
 
         $form =  $this->createForm(PlantType::class, $plant, [
@@ -146,9 +144,7 @@ class PlantController extends Controller
 
         if($plant == null || $plant->getOwner() != $user)
         {
-            $this->addFlash('error', 'Could not find plant');
-
-            return $this->redirectToRoute('homepage');
+            throw new NotFoundHttpException();
         }
 
         $em = $this->getDoctrine()->getManager();
