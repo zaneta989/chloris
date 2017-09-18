@@ -16,6 +16,7 @@ class PlantWatered
         $today = new DateTime('now');
         $today = $today->setTime(0, 0, 0);
         $dateLastWatered = $plant->getDateLastWatered()->setTime(0, 0, 0);
+
         return $today > $dateLastWatered;
     }
 
@@ -35,6 +36,7 @@ class PlantWatered
             {
                 $plant->setRemaining(1);
             }
+            $plant->setIsNotificationSend(false);
         }
         return $plant;
     }
@@ -46,7 +48,7 @@ class PlantWatered
     public function checkIfCouldWateredPlant(Plant $plant)
     {
         $plant = $this->changeTheRemainingQuantityWatered($plant);
-        return $plant->getRemaining()>0;
+        return $plant->getRemaining() > 0;
     }
 
     /**
@@ -55,9 +57,10 @@ class PlantWatered
      */
     public function wateringPlant(Plant $plant)
     {
-        $plant->setDateLastWatered(new DateTime('now'));
-        $plant->setRemaining($plant->getRemaining()-1);
-        return $plant;
+        return $plant
+            ->setDateLastWatered(new DateTime('now'))
+            ->setRemaining($plant->getRemaining()-1)
+            ->setIsNotificationSend(false);
     }
 }
 
