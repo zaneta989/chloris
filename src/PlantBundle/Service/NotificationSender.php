@@ -4,8 +4,6 @@ namespace PlantBundle\Service;
 
 use AppBundle\Entity\Notification;
 use AppBundle\Entity\User;
-use DateTime;
-use PlantBundle\Entity\Plant;
 
 class NotificationSender
 {
@@ -16,35 +14,28 @@ class NotificationSender
     public function sendNotification(User $user)
     {
         $notification = new NotificationChecker();
+
         foreach ($user->getPlants() as $key => $plant)
         {
-            if ($notification->checkIfNotificationShouldPop($plant))
-            {
-                if ($plant->getIsDaily())
-                {
-                    $user->addNotification(
-                                                new Notification
-                                                (
-                                                    '' . $plant->getName(),
-                                                    'Today You should water ' . $plant->getName() . ' '
-                                                    . $plant->getRemaining() . ' times a day'
-                                                )
-                                            );
+            if ($notification->checkIfNotificationShouldPop($plant)) {
+                if ($plant->getIsDaily()) {
+                    $user->addNotification(new Notification(
+                        $plant->getName(),
+                        'Today You should water '.$plant->getName().' '. $plant->getRemaining().' times a day'
+                    ));
                 }
                 else
                 {
-                    $user->addNotification(
-                                                new Notification
-                                                (
-                                                    '' . $plant->getName(),
-                                                    'Today You should water ' . $plant->getName()
-                                                )
-                                            );
+                    $user->addNotification(new Notification(
+                        $plant->getName(),
+                        'Today You should water '.$plant->getName()
+                    ));
                 }
+
                 $user->getPlants()[$key] = $plant->setIsNotificationSend(true);
             }
         }
+
         return $user;
     }
 }
-
