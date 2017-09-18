@@ -68,6 +68,25 @@ class PlantController extends Controller
     }
 
     /**
+     * @Route("/plant/{id}/remove", name="plantRemove")
+     */
+    public function removeAction(Request $request, $id)
+    {
+        $plant = $this
+            ->getDoctrine()
+            ->getRepository('PlantBundle:Plant')
+            ->find($id);
+        if($plant == null || $plant->getOwner() != $this->getUser())
+        {
+            throw new NotFoundHttpException();
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($plant);
+        $em->flush();
+        $this->addFlash('success', 'Plant is deleted!');
+        return $this->redirectToRoute('myPlants');
+    }
+    /**
      * @Route("/plant/{id}", name="showPlant")
      * @param int $id
      * @return RedirectResponse|Response
