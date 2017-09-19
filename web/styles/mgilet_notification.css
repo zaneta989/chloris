@@ -1,0 +1,76 @@
+#notificationDropdown{
+    background-color: #04090D;
+}
+
+.notification-menu {
+    width: 40vw;
+    max-width: 430px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+}
+
+.navbar{
+    opacity: 0.95;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 50vh;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+.scrollable-menu a {
+    text-decoration: none ;
+    color: #474747;
+}
+
+.scrollable-menu li {
+    padding: 6px 0 6px 10px;
+}
+
+.scrollable-menu li:hover {
+    background-color: #eee;
+}
+
+.scrollable-menu a.text-muted:hover {
+    color: #777;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-float {
+    float: none;
+}
+
+.list-group .list-group-item .row-content .action-secondary {
+    position: absolute;
+    right: 16px;
+    top: 8px;
+}
+
+.list-group-item-text{
+    color: #474747
+}
+
+.list-group-item h4{
+    color: #474747
+}
+
+.seen *{
+    color: #777;
+    font-weight:normal;
+}
+
+.highlighted-items{
+    color: #474747;
+    background-color: #ffffff;
+}
