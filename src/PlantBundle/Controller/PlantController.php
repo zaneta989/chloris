@@ -4,6 +4,7 @@ namespace PlantBundle\Controller;
 
 use PlantBundle\Entity\Plant;
 use PlantBundle\Form\Type\PlantType;
+use PlantBundle\Service\NotificationRemover;
 use PlantBundle\Service\NotificationSender;
 use PlantBundle\Service\PlantWatered;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -168,15 +169,12 @@ class PlantController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $plantWatered = new PlantWatered();
+        $notificationRemover = new NotificationRemover();
 
         if($plantWatered->checkIfCouldWateredPlant($plant))
         {
-            $notificationToRemove = $user->findNotaficationBySubject($plant->getName());
-            if($notificationToRemove!=null)
-            {
-                $user = $user->removeNotification($notificationToRemove);
-            }
             $em->persist($plantWatered->wateringPlant($plant));
+            $em->persist($notificationRemover->removeNotafication($user,$plant));
             $em->flush();
             $this->addFlash('sucess',  'The plant was watered today');
         }
