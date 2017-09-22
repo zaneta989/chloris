@@ -5,10 +5,9 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use PlantBundle\Entity\Notification;
 use PlantBundle\Entity\Plant;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Entity\Notification;
-
 /**
  * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="fos_user")
@@ -40,7 +39,7 @@ class User extends BaseUser
     /**
      * @var Notification
      * @ORM\OneToMany(
-     *     targetEntity="AppBundle\Entity\Notification",
+     *     targetEntity="PlantBundle\Entity\Notification",
      *     mappedBy="user",
      *     orphanRemoval=true, cascade={"persist"}
      *     )
@@ -114,16 +113,6 @@ class User extends BaseUser
     }
 
     /**
-     * The user identifier
-     * Must return an unique identifier
-     * @return int
-     */
-    public function getIdentifier()
-    {
-        return $this->getId();
-    }
-
-    /**
      * Returns all notifications attached to the user
      * @return Notification|ArrayCollection
      */
@@ -137,7 +126,7 @@ class User extends BaseUser
      * @param Notification $notification
      * @return User
      */
-    public function addNotification(Notification $notification)
+    public function addNotification($notification)
     {
         if (!$this->notifications->contains($notification))
         {
@@ -153,7 +142,7 @@ class User extends BaseUser
      * @param Notification $notification
      * @return User
      */
-    public function removeNotification(Notification $notification)
+    public function removeNotification($notification)
     {
         if ($this->notifications->contains($notification))
         {
