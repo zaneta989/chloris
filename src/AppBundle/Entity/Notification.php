@@ -3,13 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Mgilet\NotificationBundle\Model\AbstractNotification;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="notification")
  */
-class Notification extends AbstractNotification
+class Notification
 {
     /**
      * @ORM\Id
@@ -30,9 +29,7 @@ class Notification extends AbstractNotification
      */
     public function __construct($subject, $message)
     {
-        parent::__construct();
-        $this->setSubject($subject);
-        $this->setMessage($message);
+
     }
 
     /**

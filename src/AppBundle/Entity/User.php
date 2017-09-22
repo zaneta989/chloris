@@ -5,17 +5,16 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Mgilet\NotificationBundle\Model\UserNotificationInterface;
 use PlantBundle\Entity\Plant;
 use Symfony\Component\Validator\Constraints as Assert;
-
 use AppBundle\Entity\Notification;
+
 /**
  * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="fos_user")
  */
 
-class User extends BaseUser implements UserNotificationInterface
+class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -138,7 +137,7 @@ class User extends BaseUser implements UserNotificationInterface
      * @param Notification $notification
      * @return User
      */
-    public function addNotification($notification)
+    public function addNotification(Notification $notification)
     {
         if (!$this->notifications->contains($notification))
         {
@@ -154,7 +153,7 @@ class User extends BaseUser implements UserNotificationInterface
      * @param Notification $notification
      * @return User
      */
-    public function removeNotification($notification)
+    public function removeNotification(Notification $notification)
     {
         if ($this->notifications->contains($notification))
         {
