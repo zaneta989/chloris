@@ -2,7 +2,7 @@
 
 namespace PlantBundle\Service;
 
-use AppBundle\Entity\Notification;
+use PlantBundle\Entity\Notification;
 use AppBundle\Entity\User;
 
 class NotificationSender

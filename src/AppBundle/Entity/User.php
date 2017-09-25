@@ -5,17 +5,15 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Mgilet\NotificationBundle\Model\UserNotificationInterface;
+use PlantBundle\Entity\Notification;
 use PlantBundle\Entity\Plant;
 use Symfony\Component\Validator\Constraints as Assert;
-
-use AppBundle\Entity\Notification;
 /**
  * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="fos_user")
  */
 
-class User extends BaseUser implements UserNotificationInterface
+class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -41,7 +39,7 @@ class User extends BaseUser implements UserNotificationInterface
     /**
      * @var Notification
      * @ORM\OneToMany(
-     *     targetEntity="AppBundle\Entity\Notification",
+     *     targetEntity="PlantBundle\Entity\Notification",
      *     mappedBy="user",
      *     orphanRemoval=true, cascade={"persist"}
      *     )
@@ -112,16 +110,6 @@ class User extends BaseUser implements UserNotificationInterface
             $this->plants->removeElement($plant);
         }
         return $this;
-    }
-
-    /**
-     * The user identifier
-     * Must return an unique identifier
-     * @return int
-     */
-    public function getIdentifier()
-    {
-        return $this->getId();
     }
 
     /**

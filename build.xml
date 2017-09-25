@@ -59,7 +59,7 @@
     <!-- FIXTURES -->
     <target name="fixturesDev">
         <echo message="Loading data fixtures for dev environment..." />
-        <exec executable="bin/console" checkreturn="true" passthru="true">
+        <exec executable="bin/console" checkreturn="true">
             <arg value="doctrine:fixtures:load" />
             <arg value="--env=dev" />
             <arg value="--no-interaction" />

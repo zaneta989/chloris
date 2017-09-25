@@ -1,6 +1,7 @@
 plant:
     resource: "@PlantBundle/Controller/"
     type:     annotation
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
@@ -12,7 +13,3 @@ easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /admin
-
-mgilet_notifications:
-    resource: "@MgiletNotificationBundle/Controller/"
-    prefix: /notifications
