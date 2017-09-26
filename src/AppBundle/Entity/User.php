@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use PlantBundle\Entity\Plant;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Entity\Notification;
 
 /**
  * @ORM\Entity(repositoryClass="UserRepository")
@@ -37,15 +36,6 @@ class User extends BaseUser
      * @Assert\Length(max = 50,groups={"Profile", "Registration"})
      */
     protected $username;
-    /**
-     * @var Notification
-     * @ORM\OneToMany(
-     *     targetEntity="AppBundle\Entity\Notification",
-     *     mappedBy="user",
-     *     orphanRemoval=true, cascade={"persist"}
-     *     )
-     */
-    protected $notifications;
 
     /**
      * User constructor.
@@ -111,72 +101,6 @@ class User extends BaseUser
             $this->plants->removeElement($plant);
         }
         return $this;
-    }
-
-    /**
-     * The user identifier
-     * Must return an unique identifier
-     * @return int
-     */
-    public function getIdentifier()
-    {
-        return $this->getId();
-    }
-
-    /**
-     * Returns all notifications attached to the user
-     * @return Notification|ArrayCollection
-     */
-    public function getNotifications()
-    {
-        return $this->notifications;
-    }
-
-    /**
-     * Adds a notification to the user
-     * @param Notification $notification
-     * @return User
-     */
-    public function addNotification(Notification $notification)
-    {
-        if (!$this->notifications->contains($notification))
-        {
-            $this->notifications[] = $notification;
-            $notification->setUser($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove a notification to the user
-     * @param Notification $notification
-     * @return User
-     */
-    public function removeNotification(Notification $notification)
-    {
-        if ($this->notifications->contains($notification))
-        {
-            $this->notifications->removeElement($notification);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param $subject
-     * @return Notification|null
-     */
-    public function findNotaficationBySubject($subject)
-    {
-        foreach ($this->notifications as $notafication)
-        {
-            if($notafication->getSubject() === $subject )
-            {
-                return $notafication;
-            }
-        }
-        return null;
     }
 }
 

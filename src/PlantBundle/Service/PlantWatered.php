@@ -36,7 +36,6 @@ class PlantWatered
             {
                 $plant->setRemaining(1);
             }
-            $plant->setIsNotificationSend(false);
         }
         return $plant;
     }
@@ -59,8 +58,7 @@ class PlantWatered
     {
         return $plant
             ->setDateLastWatered(new DateTime('now'))
-            ->setRemaining($plant->getRemaining()-1)
-            ->setIsNotificationSend(false);
+            ->setRemaining($plant->getRemaining()-1);
     }
 }
 

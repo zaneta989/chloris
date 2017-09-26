@@ -29,12 +29,11 @@ class NotificationChecker
     {
         $today = new DateTime('now');
         $today = $today->setTime(0,0,0);
-        $isNotificationSend = $plant->getIsNotificationSend();
 
         if (!$plant->getIsDaily()) {
-            return $this->designateTheNextWateringDay($plant) <= $today && !$isNotificationSend;
+            return $this->designateTheNextWateringDay($plant) <= $today;
         } else {
-            return  $plant->getRemaining() > 0 && !$isNotificationSend;
+            return  $plant->getRemaining() > 0;
         }
     }
 }
