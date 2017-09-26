@@ -57,10 +57,15 @@ class PlantWatered
      */
     public function wateringPlant(Plant $plant)
     {
-        return $plant
-            ->setDateLastWatered(new DateTime('now'))
-            ->setRemaining($plant->getRemaining()-1)
-            ->setIsNotificationSend(false);
+        if($this->checkIfCouldWateredPlant($plant))
+        {
+            $plant = $plant
+                ->setDateLastWatered(new DateTime('now'))
+                ->setRemaining($plant->getRemaining()-1)
+                ->setIsNotificationSend(false);
+
+        }
+        return $plant;
     }
 }
 
