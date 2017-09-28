@@ -4,6 +4,7 @@ namespace PlantBundle\Controller;
 
 use PlantBundle\Entity\Plant;
 use PlantBundle\Form\Type\PlantType;
+use PlantBundle\Service\IsWateredChanger;
 use PlantBundle\Service\PlantWatered;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,10 +24,13 @@ class PlantController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-
+        $isWateredChenger = new IsWateredChanger();
+        $em->persist($isWateredChenger->checkIfYouNeedToWaterPlants($user));
+        $em->flush();
         $plants = $em->getRepository('PlantBundle:Plant')->findBy([
             'owner' => $user->getId()
         ]);
+
         return $this->render('plant/index.html.twig', [
             'plants' => $plants
         ]);
