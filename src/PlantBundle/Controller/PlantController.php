@@ -5,6 +5,7 @@ namespace PlantBundle\Controller;
 use PlantBundle\Entity\Plant;
 use PlantBundle\Form\Type\PlantType;
 use PlantBundle\Service\PlantWatered;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -64,14 +65,13 @@ class PlantController extends Controller
 
     /**
      * @Route("/plant/{id}/remove", name="plantRemove")
+     * @ParamConverter("plant", class="PlantBundle:Plant")
+     * @param Plant $plant
+     * @return RedirectResponse
      */
-    public function removeAction(Request $request, $id)
+    public function removeAction(Plant $plant)
     {
-        $plant = $this
-            ->getDoctrine()
-            ->getRepository('PlantBundle:Plant')
-            ->find($id);
-        if($plant == null || $plant->getOwner() != $this->getUser())
+        if($plant->getOwner() != $this->getUser())
         {
             throw new NotFoundHttpException();
         }
@@ -81,18 +81,16 @@ class PlantController extends Controller
         $this->addFlash('success', 'Plant is deleted!');
         return $this->redirectToRoute('myPlants');
     }
+
     /**
      * @Route("/plant/{id}", name="showPlant")
-     * @param int $id
+     * @ParamConverter("plant", class="PlantBundle:Plant")
+     * @param Plant $plant
      * @return RedirectResponse|Response
      */
-    public function showAction($id)
+    public function showAction(Plant $plant)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $plant = $em->getRepository('PlantBundle:Plant')->find($id);
-
-        if ($plant === null || $plant->getOwner() != $this->getUser())
+        if ($plant->getOwner() != $this->getUser())
         {
             throw new NotFoundHttpException();
         }
@@ -105,24 +103,21 @@ class PlantController extends Controller
      * Displays a form to edit an existing plant entity.
      *
      * @Route("/plant/{id}/edit", name="plantEdit")
+     * @ParamConverter("plant", class="PlantBundle:Plant")
      * @param Request $request
-     * @param int     $id
+     * @param Plant $plant
      * @return RedirectResponse|Response
      */
-    public function editAction(Request $request,  $id)
+    public function editAction(Request $request,  Plant $plant)
     {
         $user = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-
-        $plant = $em->getRepository('PlantBundle:Plant')->find($id);
-
-        if ($plant == null || $plant->getOwner() != $user)
+        if ($plant->getOwner() != $user)
         {
             throw new NotFoundHttpException();
         }
 
         $form =  $this->createForm(PlantType::class, $plant, [
-            'action' => $this->generateUrl('plantEdit', ['id' => $id])
+            'action' => $this->generateUrl('plantEdit', ['id' => $plant->getId()])
         ]);
 
         $form->handleRequest($request);
@@ -143,17 +138,13 @@ class PlantController extends Controller
     /**
      * @Route("/plant/{id}/watered", name="plantSetWatered")
      * @param Request $request
-     * @param int     $id
+     * @param Plant $plant
      * @return RedirectResponse
      */
-    public function wateredPlantAction(Request $request, $id)
+    public function wateredPlantAction(Request $request, Plant $plant)
     {
         $user = $this->getUser();
-        $plant = $this->getDoctrine()
-            ->getRepository('PlantBundle:Plant')
-            ->find($id);
-
-        if($plant == null || $plant->getOwner() != $user)
+        if($plant->getOwner() != $user)
         {
             throw new NotFoundHttpException();
         }
