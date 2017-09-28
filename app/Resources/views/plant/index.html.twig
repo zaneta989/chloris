@@ -10,6 +10,7 @@
             <table class="table table-hover">
                 <tr>
                     <th>Lp.</th>
+                    <th></th>
                     <th>Name</th>
                     <th>When</th>
                     <th>Amount in liters</th>
@@ -21,6 +22,11 @@
                 {% for plant in plants %}
                     <tr>
                         <td>{{ plant.id }}</td>
+                        <td>
+                            {% if plant.isWatered != true %}
+                            <img src="{{ asset('images/wateringCan.png') }}" alt="Watering">
+                            {% endif %}
+                        </td>
                         <td>{{ plant.name }}</td>
                         {% if plant.isDaily==true %}
                             <td>{{ plant.frequency }} times a day</td>
