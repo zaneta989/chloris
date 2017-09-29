@@ -92,20 +92,12 @@ class Plant
     private $remaining;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_notification_send", type="boolean")
-     */
-    private $isNotificationSend;
-
-    /**
      * Plant constructor.
      */
     public function __construct()
     {
         $this->isDaily = false;
         $this->dateLastWatered = new DateTime('now');
-        $this->isNotificationSend = false;
         $this->remaining = 0;
     }
 
@@ -291,29 +283,6 @@ class Plant
     public function getIsDaily()
     {
         return $this->isDaily;
-    }
-
-    /**
-     * Set type
-     *
-     * @param integer $isNotificationSend
-     *
-     * @return Plant
-     */
-    public function setIsNotificationSend($isNotificationSend)
-    {
-        $this->isNotificationSend = $isNotificationSend;
-        return $this;
-    }
-
-    /**
-     * Get isNotificationSend
-     *
-     * @return boolean
-     */
-    public function getIsNotificationSend()
-    {
-        return $this->isNotificationSend;
     }
 
     /**

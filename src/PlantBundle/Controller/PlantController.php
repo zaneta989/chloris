@@ -4,7 +4,6 @@ namespace PlantBundle\Controller;
 
 use PlantBundle\Entity\Plant;
 use PlantBundle\Form\Type\PlantType;
-use PlantBundle\Service\NotificationSender;
 use PlantBundle\Service\PlantWatered;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,10 +26,6 @@ class PlantController extends Controller
         $plants = $em->getRepository('PlantBundle:Plant')->findBy([
             'owner' => $user->getId()
         ]);
-
-        $notification = new NotificationSender();
-        $em->persist($notification->sendNotification($user));
-        $em->flush();
         return $this->render('plant/index.html.twig', [
             'plants' => $plants
         ]);
@@ -101,9 +96,6 @@ class PlantController extends Controller
         {
             throw new NotFoundHttpException();
         }
-        $notification = new NotificationSender();
-        $em->persist($notification->sendNotification($this->getUser()));
-        $em->flush();
         return $this->render('plant/show.html.twig', [
             'plant' => $plant
         ]);
@@ -171,11 +163,6 @@ class PlantController extends Controller
 
         if($plantWatered->checkIfCouldWateredPlant($plant))
         {
-            $notificationToRemove = $user->findNotaficationBySubject($plant->getName());
-            if($notificationToRemove!=null)
-            {
-                $user = $user->removeNotification($notificationToRemove);
-            }
             $em->persist($plantWatered->wateringPlant($plant));
             $em->flush();
             $this->addFlash('sucess',  'The plant was watered today');
