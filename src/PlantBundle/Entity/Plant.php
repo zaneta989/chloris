@@ -85,6 +85,13 @@ class Plant
     private $owner;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_watered", type="boolean")
+     */
+    private $isWatered;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="$remaining", type="integer")
@@ -98,6 +105,7 @@ class Plant
     {
         $this->isDaily = false;
         $this->dateLastWatered = new DateTime('now');
+        $this->isWatered = true;
         $this->remaining = 0;
     }
 
@@ -307,6 +315,29 @@ class Plant
         $this->owner = $owner;
         $owner->addPlant($this);
         return $this;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $isWatered
+     *
+     * @return Plant
+     */
+    public function setIsWatered($isWatered)
+    {
+        $this->isWatered = $isWatered;
+        return $this;
+    }
+
+    /**
+     * Get isWatered
+     *
+     * @return integer
+     */
+    public function getIsWatered()
+    {
+        return $this->isWatered;
     }
 
     /**
