@@ -102,5 +102,17 @@ class User extends BaseUser
         }
         return $this;
     }
+
+    public function haveAnyPlantsNeedWatering()
+    {
+        foreach ($this->plants as $plant)
+        {
+            if(!$plant->getIsWatered())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
