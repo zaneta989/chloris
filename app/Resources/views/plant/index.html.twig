@@ -36,8 +36,16 @@
                         <td>{{ plant.amount}}</td>
                         <td>{{ plant.dateLastWatered.format('Y-m-d') }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ path('plantSetWatered', {'id': plant.id}) }}" name="watered">
-                                <span class="glyphicon glyphicon-tint"></span>
+                            {% if plant.isWatered  %}
+                                <a class="btn btn-primary" href="{{ path('plantSetWatered', {'id': plant.id}) }}"
+                                   name="watered"
+                                   onclick="return confirm('It is not the time to water the plant. ' +
+                                                           'Do you really want to water your plant?')">
+                            {% else %}
+                                 <a class="btn btn-primary" href="{{ path('plantSetWatered', {'id': plant.id}) }}"
+                                    name="watered">
+                            {% endif %}
+                            <span class="glyphicon glyphicon-tint"></span>
                             </a>
                         </td>
                         <td><a class="btn btn-default" href="{{ path('showPlant', {'id': plant.id}) }}">show</a></td>
