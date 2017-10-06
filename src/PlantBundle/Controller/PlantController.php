@@ -20,7 +20,7 @@ class PlantController extends Controller
      * @Route("/plant/all", name="myPlants")
      * @return Response
      */
-    public function indexAction()
+    public function indexTableViewAction()
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -31,7 +31,26 @@ class PlantController extends Controller
             'owner' => $user->getId()
         ]);
 
-        return $this->render('plant/index.html.twig', [
+        return $this->render('myPlants/tableView.html.twig', [
+            'plants' => $plants
+        ]);
+    }
+    /**
+     * @Route("/plant/all/cardview", name="myPlantsCardView")
+     * @return Response
+     */
+    public function indexCardViewAction()
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $isWateredChenger = new IsWateredChanger();
+        $em->persist($isWateredChenger->checkIfYouNeedToWaterPlants($user));
+        $em->flush();
+        $plants = $em->getRepository('PlantBundle:Plant')->findBy([
+            'owner' => $user->getId()
+        ]);
+
+        return $this->render('myPlants/cardView.html.twig', [
             'plants' => $plants
         ]);
     }
