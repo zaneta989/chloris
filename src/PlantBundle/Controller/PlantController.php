@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PlantController extends Controller
 {
     /**
-     * @Route("/plant/all", name="myPlantsTableView")
+     * @Route("/plant/all", name="myPlants")
      * @return Response
      */
     public function indexTableViewAction()

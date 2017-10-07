@@ -21,7 +21,9 @@
                     {% if app.user.haveAnyPlantsNeedWatering %}
                         <li>
                             <a href="{{ path('myPlants') }}">
-                                <img src="{{ asset('images/exclamation-mark.png') }}" alt="exclamation-mark">
+                                <img src="{{ asset('images/exclamation-mark.png') }}" alt="exclamation-mark"
+                                     title="You have some plants that you should watered!"
+                                >
                             </a>
                         </li>
                     {% endif %}

@@ -19,7 +19,9 @@
                     <td>{{ plant.id }}</td>
                     <td>
                         {% if plant.isWatered != true %}
-                            <img src="{{ asset('images/wateringCan.png') }}" alt="Watering">
+                            <img src="{{ asset('images/wateringCanSamll.png') }}" alt="Watering"
+                                 title="You should water that plant. Please press button 'watered plant'."
+                            >
                         {% endif %}
                     </td>
                     <td>{{ plant.name }}</td>
@@ -33,14 +35,15 @@
                     <td>
                         {% if plant.isWatered  %}
                             <a class="btn btn-primary" href="{{ path('plantSetWatered', {'id': plant.id}) }}"
-                               title="watered"
+                               name="watered" title="watered plant"
                                onclick="return confirm('It is not the time to water the plant. ' +
                                'Do you really want to water your plant?')">
                                 <span class="glyphicon glyphicon-tint"></span>
                             </a>
                         {% else %}
                             <a class="btn btn-primary" href="{{ path('plantSetWatered', {'id': plant.id}) }}"
-                               title="watered">
+                               name="watered" title="watered plant"
+                            >
                                 <span class="glyphicon glyphicon-tint"></span>
                             </a>
                         {% endif %}
@@ -48,6 +51,7 @@
                     <td><a class="btn btn-default" href="{{ path('showPlant', {'id': plant.id}) }}">show</a></td>
                     <td>
                         <a class="btn btn-danger" href="{{ path('plantRemove', {'id': plant.id}) }}"
+                           title="remove plant"
                            onclick="return confirm('Are you sure you want to delete this plant?')">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
