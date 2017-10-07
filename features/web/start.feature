@@ -6,4 +6,4 @@ Feature: How to start
   Scenario: Entering how to start
     When I am on "/"
     And I follow "How to start"
-    Then I should see "Then you will not forget about watering any plant!"
+    Then I should see "This icon suggests that you need to water the plant."
