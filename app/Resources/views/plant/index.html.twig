@@ -5,7 +5,13 @@
         <p><b>You don't have any plants.</b></p>
         <p>Add plants in Catalogue of plants</p>
     {% else %}
-        <h1>My plants</h1><br>
-        {{ include('myPlants/tableView.html.twig') }}
+        <h1>My plants</h1>
+        <div class="btn-group btn-group-xs" role="group" aria-label="...">
+            <a type="button" class="btn btn-default" href="{{ path('myPlantsCardView') }}">Card view</a>
+            <a type="button" class="btn btn-default" href="{{ path('myPlants') }}">Table view</a>
+        </div>
+        <br><br>
+        {% block body_plants %}
+        {% endblock %}
     {% endif %}
 {% endblock %}
