@@ -51,9 +51,7 @@ class AdminControllerPreventingFromSelfDelete extends AdminController
         else {
 
             $this->addFlash(
-                'error',
-                'You cannot delete yourself!'
-            );
+                'error',$this->get('translator')->trans('text_and_label.the'));
         }
 
         $this->dispatch(EasyAdminEvents::POST_DELETE);
