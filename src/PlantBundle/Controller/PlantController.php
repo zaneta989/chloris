@@ -179,11 +179,19 @@ class PlantController extends Controller
         {
             $em->persist($plantWatered->wateringPlant($plant));
             $em->flush();
-            $this->addFlash('sucess',  'The plant was watered today');
+            if($plant->getRemaining()>0)
+            {
+                $this->addFlash('sucess',  'The '.$plant->getName().' was watered today. You should water the '.$plant->getName().' 
+                '.$plant->getRemaining().' times today. ');
+            }
+            else
+            {
+                $this->addFlash('sucess',  'The '.$plant->getName().' was watered today. Its enough for today.');
+            }
         }
         else
         {
-            $this->addFlash('error',  'The plant was enough watered today');
+            $this->addFlash('error',  'Do not water anymore. The '.$plant->getName().' was enough watered today.');
         }
         return $this->redirect( $request->headers->get('referer') );
     }

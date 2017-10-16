@@ -86,6 +86,11 @@ footer {
     opacity: 0.7;
 }
 
+.glyphiconStyle
+{
+    font-size: 80px;
+}
+
 section
 {
     width: 100%;
