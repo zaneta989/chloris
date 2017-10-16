@@ -7,19 +7,19 @@ Feature: Edit plant
   Scenario: Editing plant with required field
     Given I am authenticated as "admin" using "admin"
     When I am on "/plant/all"
-    And I click "show" in the "cactus" row
+    And I click "Show" in the "cactus" row
     And I follow "Edit"
     And I fill in "Name" with "flower"
     And I fill in "Frequency" with "4"
     And I fill in "Amount" with "0.25"
     And I press "Save"
-    Then I should see "Plant chnged!"
+    Then I should see "Plant changed!"
 
   @database
   Scenario: Editing plants with all field
     Given I am authenticated as "admin" using "admin"
     When I am on "/plant/all"
-    And I click "show" in the "cactus" row
+    And I click "Show" in the "cactus" row
     And I follow "Edit"
     And I fill in "Name" with "flower"
     And I fill in "Frequency" with "4"
@@ -27,12 +27,12 @@ Feature: Edit plant
     And I fill in "Place" with "Window"
     And I fill in "Description" with "Nice a flower"
     And I press "Save"
-    Then I should see "Plant chnged!"
+    Then I should see "Plant changed!"
 
   Scenario: Editing plants with blank required field
     Given I am authenticated as "admin" using "admin"
     When I am on "/plant/all"
-    And I click "show" in the "cactus" row
+    And I click "Show" in the "cactus" row
     And I follow "Edit"
     And I fill in "Name" with ""
     And I fill in "Frequency" with ""
@@ -43,7 +43,7 @@ Feature: Edit plant
   Scenario: Editing plants and back to my plants
     Given I am authenticated as "admin" using "admin"
     When I am on "/plant/all"
-    And I click "show" in the "cactus" row
+    And I click "Show" in the "cactus" row
     And I follow "Edit"
     And I fill in "Name" with "flower"
     And I fill in "Frequency" with "4"

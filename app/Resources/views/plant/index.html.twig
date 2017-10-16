@@ -2,13 +2,16 @@
 
 {% block body %}
     {% if plants|length == 0 %}
-        <p><b>You don't have any plants.</b></p>
-        <p>Add plants in Catalogue of plants</p>
+        <p><b>{{ 'text_and_label.text_dont_have_plant'|trans }}</b></p>
     {% else %}
-        <h1>My plants</h1>
+        <h1>{{ 'navigation_buttons.my_plants'|trans }}</h1>
         <div class="btn-group btn-group-xs" role="group" aria-label="...">
-            <a type="button" class="btn btn-default" href="{{ path('myPlantsCardView') }}">Card view</a>
-            <a type="button" class="btn btn-default" href="{{ path('myPlants') }}">Table view</a>
+            <a type="button" class="btn btn-default" href="{{ path('myPlantsCardView') }}">
+                {{ 'navigation_buttons.card_view' | trans }}
+            </a>
+            <a type="button" class="btn btn-default" href="{{ path('myPlants') }}">
+                {{ 'navigation_buttons.table_view' | trans }}
+            </a>
         </div>
         <br><br>
         {% block body_plants %}

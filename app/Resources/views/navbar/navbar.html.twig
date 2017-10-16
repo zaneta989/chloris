@@ -15,14 +15,15 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="{{ path('admin') }}">Managament</a></li>
+                    <li><a href="{{ path('admin') }}">{{ 'navigation_buttons.managament' | trans }}</a></li>
                 {% endif %}
                 {% if is_granted('ROLE_USER') %}
                     {% if app.user.haveAnyPlantsNeedWatering %}
                         <li>
                             <a href="{{ path('myPlants') }}">
-                                <img src="{{ asset('images/wateringCanToNavbar.png') }}" alt="watered your plants"
-                                     title="You have some plants that you should watered!"
+                                <img src="{{ asset('images/wateringCanToNavbar.png') }}"
+                                     alt="{{ 'navigation_buttons.watered_yours_plants' | trans }}"
+                                     title="{{ 'text_and_label.warring_about_watering' | trans }}"
                                 >
                             </a>
                         </li>
@@ -39,22 +40,24 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('myPlants') }}">My plants</a></li>
-                            <li><a href="{{ path('addPlant') }}">Add Plant</a></li>
+                            <li><a href="{{ path('myPlants') }}">{{ 'navigation_buttons.my_plants' | trans }}</a></li>
+                            <li><a href="{{ path('addPlant') }}">{{ 'navigation_buttons.add_plant' | trans }}</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ path('fos_user_security_logout') }}">
-                                    <span class="glyphicon glyphicon-log-out" title="log out"></span> Logout
+                                    <span class="glyphicon glyphicon-log-out" title="log out"></span>
+                                    {{ 'navigation_buttons.logout' | trans }}
                                 </a>
                             </li>
                         </ul>
                     </li>
                 {% else %}
-                    <li><a href="{{ path('homepage') }}#about">About the site</a></li>
-                    <li><a href="{{ path('homepage') }}#contact">Contact</a></li>
-                    <li><a href="{{ path('homepage') }}#start">How to start</a></li>
-                    <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                    <li><a href="{{ path('homepage') }}#about">{{ 'navigation_buttons.about_site' | trans }}</a></li>
+                    <li><a href="{{ path('homepage') }}#contact">{{ 'navigation_buttons.contact' | trans }}</a></li>
+                    <li><a href="{{ path('homepage') }}#start">{{ 'navigation_buttons.how_start' | trans }}</a></li>
+                    <li><a href="{{ path('fos_user_registration_register') }}">{{ 'navigation_buttons.register' | trans }}</a></li>
                     <li><a href="{{ path('fos_user_security_login') }}">
-                            <span class="glyphicon glyphicon-log-in" title="log in"></span> Login
+                            <span class="glyphicon glyphicon-log-in" title="log in"></span>
+                            {{ 'navigation_buttons.login' | trans }}
                         </a>
                     </li>
                 {% endif %}

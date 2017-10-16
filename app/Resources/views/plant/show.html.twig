@@ -2,41 +2,45 @@
 
 {% block body %}
 
-    <h1>Details of the plant</h1><br>
+    <h1>{{ 'text_and_label.text_details' | trans }}</h1><br>
     <div class="table-responsive">
         <table class="table table-hover">
             <tr>
-                <th>Name</th>
+                <th>{{ 'plant_label.plant_name' | trans }}</th>
                 <td>{{ plant.name }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>{{ 'plant_label.plant_description' | trans }}</th>
                 <td>{{ plant.description }}</td>
             </tr>
             <tr>
-                <th>Place</th>
+                <th>{{ 'plant_label.plant_place' | trans }}</th>
                 <td>{{ plant.place }}</td>
             </tr>
             <tr>
-                <th>When</th>
+                <th>{{ 'plant_label.plant_when' | trans }}</th>
                     {% if plant.isDaily==true %}
-                <td>{{  plant.frequency }} times a day</td>
+                <td>{{  plant.frequency }}{{ 'plant_label.plant_daily' | trans }}</td>
                 {% else %}
-                    <td>every {{ plant.frequency }} day</td>
+                    <td>{{ 'plant_label.plant_evry' | trans }}
+                        {{ plant.frequency }}
+                        {{ 'plant_label.plant_day' | trans }}
+                    </td>
                 {% endif %}
             </tr>
             <tr>
-                <th>Amount in liters</th>
+                <th>{{ 'plant_label.plant_amount' | trans }}</th>
                 <td>{{ plant.amount }}</td>
             </tr>
             <tr>
-                <th>Last day watered</th>
+                <th>{{ 'text_and_label.last_day_watered' | trans }}</th>
                 <td>{{ plant.dateLastWatered.format('Y-m-d') }}</td>
             </tr>
             <tr>
                 <th></th>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('plantSetWatered', {'id': plant.id}) }}" title="watered">
+                    <a class="btn btn-primary" href="{{ path('plantSetWatered', {'id': plant.id}) }}"
+                       title="{{ 'navigation_buttons.watered_plant' | trans }}">
                         <span class="glyphicon glyphicon-tint"></span>
                     </a>
                 </td>
@@ -44,7 +48,7 @@
         </table>
     </div>
 
-    <a class="btn btn-success" href="{{ path('plantEdit', {'id': plant.id}) }}">Edit</a>
-    <a class="btn btn-default" href="{{ path('myPlants') }}">Back to My Plant</a>
+    <a class="btn btn-success" href="{{ path('plantEdit', {'id': plant.id}) }}">{{ 'navigation_buttons.edit'|trans }}</a>
+    <a class="btn btn-default" href="{{ path('myPlants') }}">{{ 'navigation_buttons.back_to_my_plant'|trans }}</a>
 
 {% endblock %}

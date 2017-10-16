@@ -75,7 +75,7 @@ class PlantController extends Controller
             $em->persist($plant);
             $em->flush();
 
-            $this->addFlash('sucess', 'Plant added!');
+            $this->addFlash('sucess', $this->get('translator')->trans('text_and_label.plant_added'));
 
             return $this->redirectToRoute('myPlants');
         }
@@ -101,7 +101,7 @@ class PlantController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($plant);
         $em->flush();
-        $this->addFlash('success', 'Plant is deleted!');
+        $this->addFlash('success', $this->get('translator')->trans('text_and_label.plant_deleted'));
         return $this->redirectToRoute('myPlants');
     }
 
@@ -149,7 +149,7 @@ class PlantController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($plant);
             $em->flush();
-            $this->addFlash('sucess', 'Plant chnged!');
+            $this->addFlash('sucess', $this->get('translator')->trans('text_and_label.plant_changed'));
             return $this->redirectToRoute('showPlant', ['id' => $plant->getId()]);
         }
         return $this->render('plant/edit.html.twig', [
@@ -181,17 +181,23 @@ class PlantController extends Controller
             $em->flush();
             if($plant->getRemaining()>0)
             {
-                $this->addFlash('sucess',  'The '.$plant->getName().' was watered today. You should water the '.$plant->getName().' 
-                '.$plant->getRemaining().' times today. ');
+                $this->addFlash('sucess',
+                    $this->get('translator')->trans('text_and_label.the').$plant->getName().$this->
+                    get('translator')->trans('text_and_label.info_about_watering_times').$plant->getName().' 
+                '.$plant->getRemaining().$this->get('translator')->trans('text_and_label.times_today'));
             }
             else
             {
-                $this->addFlash('sucess',  'The '.$plant->getName().' was watered today. Its enough for today.');
+                $this->addFlash('sucess',
+                    $this->get('translator')->trans('text_and_label.the').$plant->getName().$this->
+                    get('translator')->trans('text_and_label.enough_watering'));
             }
         }
         else
         {
-            $this->addFlash('error',  'Do not water anymore. The '.$plant->getName().' was enough watered today.');
+            $this->addFlash('error',
+                $this->get('translator')->trans('text_and_label.dont_watered').$plant->getName().$this
+                    ->get('translator')->trans('text_and_label.was_enough'));
         }
         return $this->redirect( $request->headers->get('referer') );
     }

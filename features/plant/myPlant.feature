@@ -6,7 +6,7 @@ Feature: Show my plant
   Scenario: Showing my plants, if you don't have any plants
     Given I am authenticated as "test" using "test"
     When I am on "/plant/all"
-    Then I should see "You don't have any plants."
+    Then I should see "You dont have any plants."
 
   Scenario: Showing my plants, if you have some plants
     Given I am authenticated as "admin" using "admin"
@@ -20,6 +20,6 @@ Feature: Show my plant
     Given I am authenticated as "admin" using "admin"
     When I am on "plant/all"
     And I should see "My plants"
-    And I click "show" in the "cactus" row
+    And I click "Show" in the "cactus" row
     Then I should see "Details of the plant"
     And I should see "cactus"

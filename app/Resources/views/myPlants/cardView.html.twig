@@ -6,8 +6,9 @@
             <div class="cardView">
                 <div class="cardHeader">
                     {% if plant.isWatered != true %}
-                        <img class="cardImage" src="{{ asset('images/wateringCan.png') }}" alt="watering"
-                             title="You should water that plant. Please press button 'watered plant'."
+                        <img class="cardImage" src="{{ asset('images/wateringCan.png') }}"
+                             alt="{{ 'navigation_buttons.icon_watering_can' | trans }}"
+                             title="{{ 'text_and_label.info_about_watering_icon' | trans }}"
                         >
                     {% endif %}
                     <p class="plantName">
@@ -15,41 +16,48 @@
                     </p>
                 </div>
                 <div class="cardContent">
-                    <p>You should water the plant
+                    <p>{{ 'text_and_label.text_in_card_view' | trans }}
                         {% if plant.isDaily == true %}
-                            {{ plant.frequency }} times a day
+                            {{ plant.frequency }} {{ 'plant_label.plant_daily' | trans }}
                         {% else %}
-                            every {{ plant.frequency }} day
+                            {{ 'plant_label.plant_evry' | trans }} {{ plant.frequency }} {{ 'plant_label.plant_day' | trans }}
                         {% endif %}
-                        with {{ plant.amount}}
-                        liters of water.
+                        {{ 'text_and_label.with' | trans }} {{ plant.amount}}
+                        {{ 'text_and_label.liters' | trans }}
                     </p>
                     <p>
-                        Last day watered the plant:
+                        {{ 'text_and_label.last_day_watered' | trans }}
                         <i>{{ plant.dateLastWatered.format('Y-m-d') }}</i>
                     </p>
-                    <a class="readMoreLink" href="{{ path('showPlant', {'id': plant.id}) }}"><b><i>show details</i></b></a>
+                    <a class="readMoreLink" href="{{ path('showPlant', {'id': plant.id}) }}">
+                        <b>
+                            <i>
+                                {{ 'navigation_buttons.show_details' | trans }}
+                            </i>
+                        </b>
+                    </a>
                 </div>
                 <div class="line-separator"></div>
                 <div class="cardFooter">
                     {% if plant.isWatered  %}
                         <a class="btn btn-primary buttonRound" href="{{ path('plantSetWatered', {'id': plant.id}) }}"
-                           name="watered" title="watered plant"
-                           onclick="return confirm('It is not the time to water the plant. ' +
-                                                   'Do you really want to water your plant?')">
+                           name="watered" title="{{ 'navigation_buttons.watered_plant' | trans }}"
+                           onclick="return confirm('{{ 'text_and_label.text_about_watered_plant' | trans }}')">
                             <span class="glyphicon glyphicon-tint"></span>
                         </a>
                     {% else %}
                         <a class="btn btn-primary buttonRound" href="{{ path('plantSetWatered', {'id': plant.id}) }}"
-                           name="watered" title="watered plant"
+                           name="watered" title="{{ 'navigation_buttons.watered_plant' | trans }}"
                         >
                             <span class="glyphicon glyphicon-tint"></span>
                         </a>
                     {% endif %}
-                    <a class="btn btn-success buttonRound" href="{{ path('plantEdit', {'id': plant.id}) }}">Edit</a>
+                    <a class="btn btn-success buttonRound" href="{{ path('plantEdit', {'id': plant.id}) }}">
+                        {{ 'navigation_buttons.edit' | trans }}
+                    </a>
                     <a class="btn btn-danger buttonRound" href="{{ path('plantRemove', {'id': plant.id}) }}"
-                       title="remove plant"
-                       onclick="return confirm('Are you sure you want to delete this plant?')">
+                       title="{{ 'navigation_buttons.remove_plant' | trans }}"
+                       onclick="return confirm('{{ 'text_and_label.text_about_delete_plant' | trans }}')">
                         <span class="glyphicon glyphicon-trash"></span>
                     </a>
                 </div>
