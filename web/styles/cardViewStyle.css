@@ -1,0 +1,68 @@
+.cardView
+{
+    width: 100%;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,.4);
+}
+.cardHeader
+{
+    color: #ffffff;
+    position: relative;
+    margin-bottom: 0;
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    height: auto;
+    background-color: #2d7783;
+    letter-spacing: 4px;
+}
+.cardImage
+{
+    margin-right: 10px;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    top: -1em;
+    width: 24%;
+}
+.plantName
+{
+    margin: 18px 16px 8px 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 120%;
+}
+.cardContent
+{
+    position: relative;
+    background: #ffffff;
+    margin: 0;
+    max-width: 100%;
+    height: auto;
+    padding: 4px 20px;
+}
+.cardFooter
+{
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+.readMoreLink
+{
+    display: block;
+    margin: 0 5px;
+    text-align: center;
+    font-size: 12px;
+    color: #003278;
+}
+.buttonRound
+{
+    border-radius: 50%;
+    height: 35px;
+    width: 45px;
+}
+.line-separator
+{
+    margin: 10px 20px 0 20px;
+    border-bottom: 1px solid #cccccc;
+    padding: 0;
+}

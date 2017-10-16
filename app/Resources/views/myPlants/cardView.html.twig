@@ -1,0 +1,54 @@
+{% for plant in plants %}
+    <div class="col-md-4">
+        <div class="cardView">
+            <div class="cardHeader">
+                {% if plant.isWatered != true %}
+                    <img class="cardImage" src="{{ asset('images/wateringCan.png') }}" alt="Watering">
+                {% endif %}
+                <p class="plantName">
+                    {{ plant.name }}
+                </p>
+            </div>
+            <div class="cardContent">
+                <p>You should water the plant
+                    {% if plant.isDaily == true %}
+                        {{ plant.frequency }} times a day
+                    {% else %}
+                        every {{ plant.frequency }} day
+                    {% endif %}
+                    with {{ plant.amount}}
+                    liters of water.
+                </p>
+                <p>
+                    Last day watered the plant:
+                    <i>{{ plant.dateLastWatered.format('Y-m-d') }}</i>
+                </p>
+                <a class="readMoreLink" href="{{ path('showPlant', {'id': plant.id}) }}"><b><i>show details</i></b></a>
+            </div>
+            <div class="line-separator"></div>
+            <div class="cardFooter">
+                {% if plant.isWatered  %}
+                    <a class="btn btn-primary buttonRound" href="{{ path('plantSetWatered', {'id': plant.id}) }}"
+                       title="watered"
+                       onclick="return confirm('It is not the time to water the plant. ' +
+                                               'Do you really want to water your plant?')">
+                        <span class="glyphicon glyphicon-tint"></span>
+                    </a>
+                {% else %}
+                    <a class="btn btn-primary buttonRound" href="{{ path('plantSetWatered', {'id': plant.id}) }}"
+                       title="watered">
+                        <span class="glyphicon glyphicon-tint"></span>
+                    </a>
+                {% endif %}
+                <a class="btn btn-success buttonRound" href="{{ path('plantEdit', {'id': plant.id}) }}">Edit</a>
+                <a class="btn btn-danger buttonRound" href="{{ path('plantRemove', {'id': plant.id}) }}"
+                   onclick="return confirm('Are you sure you want to delete this plant?')">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/cardViewStyle.css') }}">
+{% endblock %}
