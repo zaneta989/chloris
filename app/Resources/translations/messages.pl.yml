@@ -1,3 +1,4 @@
+User: Użytkownik
 navigation_buttons:
   add_plant: 'Dodaj roślinę'
   back_to_my_plant: 'Wróć do Moje rośliny'
@@ -62,6 +63,18 @@ plant_label:
   plant_frequency_type: 'Typ częstotliwości'
   plant_frequency_evry: 'co x dni'
   plant_frequency_daily: 'codziennie'
+
+easy_admin:
+  homepage: 'Wróć do strony głównej'
+  users: 'Użytkownicy'
+  username: 'Nazwa użytkownika'
+  role: 'Rola'
+  user: 'Użytkownik'
+  password: 'Hasło'
+  enabled: 'Włączony'
+  last_login: 'Ostatnie logowanie'
+  email: 'E-mail'
+  error_dont_delete_yourself: 'Nie możesz usunąć sam siebie'
 
 text_on_homepage:
   web_application: 'Aplikacja internetowa'

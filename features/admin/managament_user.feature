@@ -28,10 +28,10 @@ Feature: User managament
     And I follow "User"
     And I click "Edit" in the "test@chloris.dev" row
     And I fill in "Username" with "test1"
-    And I fill in "Email" with "test1@chloris.dev"
+    And I fill in "E-mail" with "test1@chloris.dev"
     And I press "Save changes"
     Then I should see the following text in row:
-      | Username | E-mail address    |
+      | Username | E-mail            |
       | test1    | test1@chloris.dev |
 
   @database
@@ -58,11 +58,11 @@ Feature: User managament
     And I follow "User"
     And I follow "Add User"
     And I fill in "Username" with "test1"
-    And I fill in "Email" with "test1@chloris.dev"
+    And I fill in "E-mail" with "test1@chloris.dev"
     And I fill in "Password" with "test1234"
     And I follow "Back to listing"
     Then I should not see the following text in row:
-      | Username | E-mail address    |
+      | Username | E-mail            |
       | test1    | test1@chloris.dev |
 
   @database
@@ -72,11 +72,11 @@ Feature: User managament
     And I follow "User"
     And I follow "Add User"
     And I fill in "Username" with "test1"
-    And I fill in "Email" with "test1@chloris.dev"
+    And I fill in "E-mail" with "test1@chloris.dev"
     And I fill in "Password" with "test1234"
     And I press "Save changes"
     Then I should see the following text in row:
-      | Username | E-mail address    |
+      | Username | E-mail            |
       | test1    | test1@chloris.dev |
 
   Scenario: Don't found user
@@ -94,7 +94,7 @@ Feature: User managament
     When I fill in "query" with "test@"
     And I press "Search"
     Then I should see the following text in row:
-      | Username     | E-mail address        |
+      | Username     | E-mail                |
       | test         | test@chloris.dev      |
 
   Scenario: Add new user with too short password
@@ -102,7 +102,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I follow "Add User"
-    And I fill in "Email" with "new_user@chloris.com"
+    And I fill in "E-mail" with "new_user@chloris.com"
     And I fill in "Username" with "new_user"
     And I fill in "Password" with "t"
     And I press "Save changes"
@@ -113,7 +113,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I follow "Add User"
-    And I fill in "Email" with "new_user@chloris.com"
+    And I fill in "E-mail" with "new_user@chloris.com"
     And I fill in "Username" with "flower_lover"
     And I fill in "Password" with "new_user"
     And I press "Save changes"
@@ -124,7 +124,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I follow "Add User"
-    And I fill in "Email" with "new_user@chloris.com"
+    And I fill in "E-mail" with "new_user@chloris.com"
     And I fill in "Username" with "f"
     And I fill in "Password" with "new_user"
     And I press "Save changes"
@@ -135,7 +135,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I follow "Add User"
-    And I fill in "Email" with "new_user@chloris.com"
+    And I fill in "E-mail" with "new_user@chloris.com"
     And I fill in "Username" with "asseocarnisanguineoviscericartilaginonervomedullary"
     And I fill in "Password" with "new_user"
     And I press "Save changes"
@@ -146,7 +146,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I follow "Add User"
-    And I fill in "Email" with "flower_lover@chloris.dev"
+    And I fill in "E-mail" with "flower_lover@chloris.dev"
     And I fill in "Username" with "new_user"
     And I fill in "Password" with "new_user"
     And I press "Save changes"
@@ -157,7 +157,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I follow "Add User"
-    And I fill in "Email" with "aasseocarnisanguineoviscericartilaginonervomedullaryaequeosalinocalcalinoceraceoaluminosocupreovitriolicaequdddddeosalinocalcalinoceraceoaluminosocupreovitriolicaequeosal@chloris.dev"
+    And I fill in "E-mail" with "aasseocarnisanguineoviscericartilaginonervomedullaryaequeosalinocalcalinoceraceoaluminosocupreovitriolicaequdddddeosalinocalcalinoceraceoaluminosocupreovitriolicaequeosal@chloris.dev"
     And I fill in "Username" with "new_user"
     And I fill in "Password" with "new_user"
     And I press "Save changes"
@@ -168,7 +168,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I follow "Add User"
-    And I fill in "Email" with "a@"
+    And I fill in "E-mail" with "a@"
     And I fill in "Username" with "new_user"
     And I fill in "Password" with "new_user"
     And I press "Save changes"
@@ -179,7 +179,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I follow "Add User"
-    And I fill in "Email" with ""
+    And I fill in "E-mail" with ""
     And I fill in "Username" with ""
     And I fill in "Password" with ""
     And I press "Save changes"
@@ -192,7 +192,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I click "Edit" in the "test@chloris.dev" row
-    And I fill in "Email" with "new_user@chloris.com"
+    And I fill in "E-mail" with "new_user@chloris.com"
     And I fill in "Username" with "flower_lover"
     And I press "Save changes"
     Then I should see "The username is already used."
@@ -202,7 +202,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I click "Edit" in the "test@chloris.dev" row
-    And I fill in "Email" with "new_user@chloris.com"
+    And I fill in "E-mail" with "new_user@chloris.com"
     And I fill in "Username" with "f"
     And I press "Save changes"
     Then I should see "The username is too short."
@@ -212,7 +212,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I click "Edit" in the "test@chloris.dev" row
-    And I fill in "Email" with "new_user@chloris.com"
+    And I fill in "E-mail" with "new_user@chloris.com"
     And I fill in "Username" with "asseocarnisanguineoviscericartilaginonervomedullary"
     And I press "Save changes"
     Then I should see "This value is too long. It should have 50 characters or less."
@@ -222,7 +222,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I click "Edit" in the "test@chloris.dev" row
-    And I fill in "Email" with "flower_lover@chloris.dev"
+    And I fill in "E-mail" with "flower_lover@chloris.dev"
     And I fill in "Username" with "new_user"
     And I press "Save changes"
     Then I should see "The email is already used."
@@ -232,7 +232,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I click "Edit" in the "test@chloris.dev" row
-    And I fill in "Email" with "asseocarnisanguineoviscericartilaginonervomedullaryaequeosalinocalcalinoceraceoaluminosocupreovitriolicaequdddddeosalinocalcalinoceraceoaluminosocupreovitriolicaequeosal@chloris.dev"
+    And I fill in "E-mail" with "asseocarnisanguineoviscericartilaginonervomedullaryaequeosalinocalcalinoceraceoaluminosocupreovitriolicaequdddddeosalinocalcalinoceraceoaluminosocupreovitriolicaequeosal@chloris.dev"
     And I fill in "Username" with "new_user"
     And I press "Save changes"
     Then I should see "The email is too long."
@@ -242,7 +242,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I click "Edit" in the "test@chloris.dev" row
-    And I fill in "Email" with "a@"
+    And I fill in "E-mail" with "a@"
     And I fill in "Username" with "new_user"
     And I press "Save changes"
     Then I should see "The email is not valid."
@@ -252,7 +252,7 @@ Feature: User managament
     When I follow "Managament"
     And I follow "User"
     And I click "Edit" in the "test@chloris.dev" row
-    And I fill in "Email" with ""
+    And I fill in "E-mail" with ""
     And I fill in "Username" with ""
     And I press "Save changes"
     Then I should see "Please enter a username."

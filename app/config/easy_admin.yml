@@ -1,34 +1,36 @@
 easy_admin:
     site_name: 'Chloris'
     design:
+
       color_scheme: 'light'
       menu:
           - User
-          - { label: 'Go to homepage', route: 'homepage' }
+          - { label: 'easy_admin.homepage', route: 'homepage' }
     entities:
         User:
+            label: 'easy_admin.users'
             class: AppBundle\Entity\User
             controller: EasyAdminBundle\Controller\AdminControllerPreventingFromSelfDelete
             list:
                 fields:
-                    - property: 'username'
-                    - { property: 'email', type: 'email', label: 'E-mail address' }
-                    - 'enabled'
-                    - 'lastLogin'
+                    - { property: 'username', label: 'easy_admin.username' }
+                    - { property: 'email', type: 'email', label: 'easy_admin.email' }
+                    - { property: 'enabled', label: 'easy_admin.enabled' }
+                    - { property: 'lastLogin', label: 'easy_admin.last_login'}
             edit:
                 fields:
-                    - { property: 'username' }
-                    - { property: 'email' }
-                    - { property: 'roles', type: 'choice', type_options:
-                        { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } }
+                    - { property: 'username', label: 'easy_admin.username' }
+                    - { property: 'email', label: 'easy_admin.email' }
+                    - { property: 'roles', label: 'easy_admin.role', type: 'choice', type_options:
+                        { multiple: true, choices: { 'easy_admin.user': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } }
                       }
                 form_options: { validation_groups: ['Profile'] }
             new:
                 fields:
-                    - property: 'username'
-                    - { property: 'email', type: 'email', label: 'Email' }
-                    - { property: 'plainPassword', label: 'Password', type: 'password' }
-                    - { property: 'roles', type: 'choice', type_options:
-                        { multiple: true, choices: { 'User': 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } }
+                    - { property: 'username', label: 'easy_admin.username' }
+                    - { property: 'email', type: 'email', label: 'easy_admin.email' }
+                    - { property: 'plainPassword', label: 'easy_admin.password', type: 'password' }
+                    - { property: 'roles', label: 'easy_admin.role', type: 'choice', type_options:
+                        { multiple: true, choices: { U: 'ROLE_USER', 'Administrator': 'ROLE_ADMIN' } }
                       }
                 form_options: { validation_groups: ['Registration'] }
