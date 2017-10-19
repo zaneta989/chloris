@@ -4,7 +4,7 @@
     <div class="jumbotron text-center">
         <div class="container-head">
             <h1>Chloris</h1>
-            <p>Web application</p>
+            <p>{{ 'text_on_homepage.web_application' |trans }}</p>
         </div>
     </div>
 {% endblock %}
@@ -16,17 +16,11 @@
                 <div class="col-md-12">
                     <h1>Chloris</h1>
                     <h3>
-                        <i>Web application</i>
+                        <i>{{ 'text_on_homepage.web_application' | trans }}</i>
                     </h3>
                     <br>
-                    <p>
-                        Chloris is a web application, which the main purpose is to remind you about the watering of your
-                        plants.
-                    </p>
-                    <p>
-                        Once you have set up your account. You should add plant to your account which plants you have. Then
-                        the application will send you notifications when water the plants and in what amounts to water.
-                    </p>
+                    <p>{{ 'text_on_homepage.what_is_chloris' | trans }}</p>
+                    <p>{{ 'text_on_homepage.how_work_chloris' | trans }}</p>
                 </div>
             </div>
         </div>
@@ -35,24 +29,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>How to start?</h1>
+                    <h1>{{ 'text_on_homepage.how_start' | trans }}</h1>
                     <br>
-                    <p>Sign up and log in</p>
-                    <p>Then you can add the plants to your account and the application will send you notifications.
-                        This icon suggests that you need to water the plant.
-                    </p>
-                    <p>Next press the 'watered plant' button to indicate that the plant has been watered.</p>
+                    <p>{{ 'text_on_homepage.first_advice' | trans }}</p>
+                    <p>{{ 'text_on_homepage.second_advice' | trans }}</p>
+                    <p>{{ 'text_on_homepage.third_advice' | trans }}</p>
                     <br>
                 </div>
                 <div class="row">
                     <div class="col-sm-4 glyphiconStyle">
-                        <span class="glyphicon glyphicon-log-in" title="log in"></span>
+                        <span class="glyphicon glyphicon-log-in" title="{{ 'text_and_label.log_in' | trans }}"></span>
                     </div>
                     <div class="col-sm-4">
-                        <img src="{{ asset('images/wateringCanToHome.png') }}" alt="watering" title="you should watering plant">
+                        <img src="{{ asset('images/wateringCanToHome.png') }}"
+                             alt="{{ 'navigation_buttons.icon_watering_can' | trans }}"
+                             title="{{ 'text_and_label.text_watering' | trans }}"
+                        >
                     </div>
                     <div class="col-sm-4 glyphiconStyle ">
-                        <span class="glyphicon glyphicon-tint" title="watered plant"></span>
+                        <span class="glyphicon glyphicon-tint"
+                              title="{{ 'navigation_buttons.watered_plant' | trans }}">
+
+                        </span>
                     </div>
                 </div>
             </div>
@@ -62,9 +60,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Contact</h1><br>
+                    <h1>{{ 'navigation_buttons.contact' | trans }}</h1><br>
                     <p><b>Email:</b> admin@gchloris.com</p>
-                    <p><b>Phone:</b> 856 763 987<br></p>
+                    <p><b>{{ 'text_and_label.phone' | trans }}</b> 856 763 987<br></p>
                 </div>
             </div>
         </div>

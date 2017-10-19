@@ -22,28 +22,28 @@ class PlantType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'label'=>'Name'))
+                'label'=>'plant_label.plant_name'))
             ->add('place', TextareaType::class, array(
-                'label'=>'Place',
+                'label'=>'plant_label.plant_place',
                 'required'=>false ))
             ->add('description', TextareaType::class, array(
-                'label'=>'Description',
+                'label'=>'plant_label.plant_description',
                 'required'=>false ))
             ->add('frequency', IntegerType::class, array(
-                'label'=>'Frequency'))
+                'label'=>'plant_label.plant_frequency'))
             ->add('isDaily', ChoiceType::class, array(
-                'label'    => 'Frequency type',
+                'label'    => 'plant_label.plant_frequency_type',
                 'choices'  => array(
-                    'every x days' => false,
-                    'times a day' => true)))
+                    'plant_label.plant_frequency_evry' => false,
+                    'plant_label.plant_frequency_daily' => true)))
             ->add('amount', NumberType::class, array(
-                'label'=>'Amount'))
+                'label'=>'plant_label.plant_amount'))
             ->add('dateLastWatered', DateType::class, array(
                 'input' => 'datetime',
                 'widget' => 'single_text',
                 'html5' => false,
                 'required' => false,
-                'label' => 'Date last watered',
+                'label' => 'plant_label.plant_date_watered',
                 ));
     }
     /**

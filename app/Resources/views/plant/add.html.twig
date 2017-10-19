@@ -3,13 +3,15 @@
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block body %}
-    <h1>Add a plant</h1>
+    <h1>{{ 'navigation_buttons.add_plant'|trans }}</h1>
     {{ form_start(form, {'attr': {'class':'form-horizontal'}}) }}
     {{ form_widget(form) }}
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2">
-            <input type="submit" value="Add" class="btn btn-success">
-            <a class="btn btn-default" href="{{ path('myPlants') }}">Back to My Plant</a>
+            <input type="submit" value="{{ 'navigation_buttons.add'|trans }}" class="btn btn-success">
+            <a class="btn btn-default" href="{{ path('myPlants') }}">
+                {{ 'navigation_buttons.back_to_my_plant'|trans }}
+            </a>
         </div>
     </div>
     {{ form_end(form) }}

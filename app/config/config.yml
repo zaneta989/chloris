@@ -5,7 +5,7 @@ imports:
     - { resource: easy_admin.yml }
 
 parameters:
-    locale: en
+    locale: pl
 
 framework:
     translator: ~

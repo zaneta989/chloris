@@ -30,7 +30,7 @@ Feature: Add plant to user account
     And I should see the following text in row:
       | Name   | When        | Amount in liters |
       | flower | every 4 day | 0.25             |
-    And I click "show" in the "flower" row
+    And I click "Show" in the "flower" row
     And I should see "Window"
     And I should see "Nice a flower"
 
