@@ -22,8 +22,14 @@ navigation_buttons:
   remove_plant: 'remove plant'
   edit: 'Edit'
   show: 'Show'
+  profile: 'Show profil'
+  edit_profile: 'Edit profil'
+
 
 text_and_label:
+  resseting: 'Reset password'
+  forget_password: 'Don&apst remember password '
+  change_password: 'Change password'
   text_dont_have_plant: 'You dont have any plants.'
   text_details: 'Details of the plant'
   text_edit: 'Edit a plant'
@@ -62,6 +68,19 @@ plant_label:
   plant_frequency_type: 'Frequency type'
   plant_frequency_evry: 'every x days'
   plant_frequency_daily: 'times a day'
+
+easy_admin:
+  homepage: 'Go to homepage'
+  users: 'Users'
+  username: 'Username'
+  role: 'Roles'
+  user: 'User'
+  password: 'Password'
+  enabled: 'Enabledy'
+  last_login: 'Last login'
+  email: 'E-mail'
+  error_dont_delete_yourself: 'You cannot delete yourself!'
+
 
 text_on_homepage:
   web_application: 'Web application'

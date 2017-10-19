@@ -1,3 +1,4 @@
+User: Użytkownik
 navigation_buttons:
   add_plant: 'Dodaj roślinę'
   back_to_my_plant: 'Wróć do Moje rośliny'
@@ -22,8 +23,13 @@ navigation_buttons:
   remove_plant: 'usuń roślinę'
   edit: 'Edytuj'
   show: 'Pokaż'
+  profile: 'Wyświetl profil'
+  edit_profile: 'Edytuj profil'
 
 text_and_label:
+  change_password: 'Zmiana hasła'
+  resseting: 'Resetuj hasło'
+  forget_password: 'Zapomniałem hasła'
   text_dont_have_plant: 'Nie masz żadnych roślin.'
   text_details: 'Szczegóły rośliny'
   text_edit: 'Edytuj rośline'
@@ -62,6 +68,18 @@ plant_label:
   plant_frequency_type: 'Typ częstotliwości'
   plant_frequency_evry: 'co x dni'
   plant_frequency_daily: 'codziennie'
+
+easy_admin:
+  homepage: 'Wróć do strony głównej'
+  users: 'Użytkownicy'
+  username: 'Nazwa użytkownika'
+  role: 'Rola'
+  user: 'Użytkownik'
+  password: 'Hasło'
+  enabled: 'Włączony'
+  last_login: 'Ostatnie logowanie'
+  email: 'E-mail'
+  error_dont_delete_yourself: 'Nie możesz usunąć sam siebie'
 
 text_on_homepage:
   web_application: 'Aplikacja internetowa'
