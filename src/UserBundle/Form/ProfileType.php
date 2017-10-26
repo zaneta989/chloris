@@ -1,8 +1,8 @@
 <?php
 namespace UserBundle\Form;
 
+use AppBundle\Form\Type\UserPreferencesType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -17,7 +17,8 @@ class ProfileType extends AbstractType
             'download_uri' => true,
             'image_uri' => true,
             'imagine_pattern' => '',
-        ]);
+        ])
+        ->add('preferences',UserPreferencesType::class);
     }
 
     public function getParent()

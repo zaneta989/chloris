@@ -38,6 +38,15 @@ class User extends BaseUser
     private $plants;
 
     /**
+     * @ORM\OneToOne(
+     *     targetEntity="AppBundle\Entity\UserPreferences",
+     *     orphanRemoval=true, cascade={"persist"}
+     *     )
+     * * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $preferences;
+
+    /**
      * @Assert\Length(max = 50,groups={"Profile", "Registration"})
      */
     protected $username;
@@ -72,6 +81,7 @@ class User extends BaseUser
         parent::__construct();
         $this->plants = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->preferences = new UserPreferences();
         $this->image = new EmbeddedFile();
     }
 
@@ -141,6 +151,22 @@ class User extends BaseUser
             }
         }
         return false;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreferences()
+    {
+        return $this->preferences;
+    }
+
+    /**
+     * @param mixed $preferences
+     */
+    public function setPreferences($preferences)
+    {
+        $this->preferences = $preferences;
     }
 
     /**
