@@ -80,7 +80,7 @@
         <trycatch>
             <try>
                 <exec executable="behat" checkreturn="true" passthru="true">
-                <arg value="--format=progress"/>
+                    <arg value="--format=progress"/>
                 </exec>
             </try>
             <catch>

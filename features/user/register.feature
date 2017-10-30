@@ -6,10 +6,10 @@ Feature: Register
   @database
   Scenario: Registration with correct data
     When I am on "/register"
-    And I fill in "Email" with "new_user1@chloris.com"
+    And I fill in "Email" with "new_user1@chloris.dev"
     And I fill in "Username" with "new_user1"
-    And I fill in "Password" with "new_user"
-    And I fill in "Repeat password" with "new_user"
+    And I fill in "Password" with "new_user1"
+    And I fill in "Repeat password" with "new_user1"
     And I press "Register"
     Then I should see "The user has been created successfully."
 
