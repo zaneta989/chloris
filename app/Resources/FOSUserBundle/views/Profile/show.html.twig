@@ -1,0 +1,9 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_page_title %}
+    {{ user.username }}
+{% endblock %}
+{% block fos_user_content %}
+    {% include "@FOSUser/Profile/show_content.html.twig" %}
+    <a class="btn btn-success" href="{{ path('fos_user_profile_edit') }}">{{ 'navigation_buttons.edit_profile'|trans }}</a>
+{% endblock fos_user_content %}

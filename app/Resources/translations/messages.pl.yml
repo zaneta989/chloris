@@ -23,8 +23,13 @@ navigation_buttons:
   remove_plant: 'usuń roślinę'
   edit: 'Edytuj'
   show: 'Pokaż'
+  profile: 'Wyświetl profil'
+  edit_profile: 'Edytuj profil'
 
 text_and_label:
+  change_password: 'Zmiana hasła'
+  resseting: 'Resetuj hasło'
+  forget_password: 'Zapomniałem hasła'
   text_dont_have_plant: 'Nie masz żadnych roślin.'
   text_details: 'Szczegóły rośliny'
   text_edit: 'Edytuj rośline'
