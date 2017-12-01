@@ -7,10 +7,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use PlantBundle\Entity\Plant;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="fos_user")
+ * @Vich\Uploadable
  */
 
 class User extends BaseUser
@@ -38,6 +43,28 @@ class User extends BaseUser
     protected $username;
 
     /**
+     * @Vich\UploadableField(mapping="user_image", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName")
+     *
+     * @var File
+     */
+    private $imageFile;
+
+
+    /**
+     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
+     *
+     * @var EmbeddedFile
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
      * User constructor.
      */
     public function __construct()
@@ -45,6 +72,7 @@ class User extends BaseUser
         parent::__construct();
         $this->plants = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->image = new EmbeddedFile();
     }
 
     /**
@@ -113,6 +141,33 @@ class User extends BaseUser
             }
         }
         return false;
+    }
+
+    /**
+     * @param File|UploadedFile $image
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if (null !== $image) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage(EmbeddedFile $image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 }
 

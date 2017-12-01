@@ -4,6 +4,15 @@
     {{ user.username }}
 {% endblock %}
 {% block fos_user_content %}
+    <div class="col-md-6">
+        <div id="fos_user_user_avatar">
+            {% if user.image.name != null %}
+                <img src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="{{ 'text_and_label.avatar' | trans }}" />
+            {% else %}
+                <img src="{{ asset('images/default-user.png') }}" alt="{{ 'text_and_label.avatar_null' | trans }}" />
+            {% endif %}
+        </div>
+    </div>
     {% include "@FOSUser/Profile/show_content.html.twig" %}
     <a class="btn btn-success" href="{{ path('fos_user_profile_edit') }}">{{ 'navigation_buttons.edit_profile'|trans }}</a>
 {% endblock fos_user_content %}

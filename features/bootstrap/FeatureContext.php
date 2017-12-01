@@ -15,6 +15,8 @@ use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use PHPUnit\Framework\Assert;
 use PlantBundle\DataFixtures\ORM\LoadPlantData;
 
+ini_set('memory_limit','512M');
+
 /** @noinspection PhpUndefinedClassInspection */
 class FeatureContext extends MinkContext implements Context
 {
