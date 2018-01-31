@@ -10,10 +10,12 @@ framework:
         storage_id: session.storage.mock_file
     profiler:
         collect: false
+        enabled: true
+        only_exceptions: false
 
 web_profiler:
     toolbar: false
-    intercept_redirects: false
+    intercept_redirects: true
 
 swiftmailer:
     disable_delivery: true

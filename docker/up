@@ -5,8 +5,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         cd "${0%/*}/files" &&
         docker-compose build &&
         docker-compose -f docker-compose-macos.yml up -d &&
-        docker exec -ti chloris_php   sh -c 'mkdir /var/www/chloris/var && chmod 777 /var/www/chloris/var' &&
-        docker exec -ti chloris_nginx sh -c 'mkdir /var/www/chloris/var && chmod 777 /var/www/chloris/var'
+        docker exec -ti chloris_php   sh -c 'mkdir -p /var/www/chloris/var && chmod 777 /var/www/chloris/var' &&
+        docker exec -ti chloris_nginx sh -c 'mkdir -p /var/www/chloris/var && chmod 777 /var/www/chloris/var'
     )
 else
     ( cd "${0%/*}/files" && docker-compose build && docker-compose up -d )
