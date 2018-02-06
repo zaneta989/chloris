@@ -53,6 +53,8 @@ text_and_label:
   was_enough: ' została już dzisiaj wystarczająco podlana.'
   log_in: 'zaloguj się'
   text_watering: 'powinneś podlać roślinę'
+  avatar: 'Twoje zdjęcie profilowe'
+  avatar_null: 'Domyślne zdjęcie profilowe'
 
 plant_label:
   plant_name: 'Nazwa'

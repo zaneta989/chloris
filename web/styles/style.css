@@ -134,7 +134,19 @@ section#login
 {
     background-size: cover;
     background: url('/../images/login.jpg') center;
+    margin: 50px 0 0 0;
     height: calc(100vh - 50px);
     text-align: left;
     color: #000000;
 }
+
+#fos_user_user_avatar img {
+    width: 200px;
+    height: 200px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 0;
+    box-shadow: none;
+}
+

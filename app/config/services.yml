@@ -12,3 +12,13 @@ services:
         resource: '../../src/AppBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
+
+    app.form.registration:
+        class: UserBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+
+    app.form.profile:
+        class: UserBundle\Form\ProfileType
+        tags:
+            - { name: form.type, alias: app_user_profile }
