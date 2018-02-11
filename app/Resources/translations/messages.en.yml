@@ -22,8 +22,14 @@ navigation_buttons:
   remove_plant: 'remove plant'
   edit: 'Edit'
   show: 'Show'
+  profile: 'Show profil'
+  edit_profile: 'Edit profil'
+
 
 text_and_label:
+  resseting: 'Reset password'
+  forget_password: 'Don&apst remember password '
+  change_password: 'Change password'
   text_dont_have_plant: 'You dont have any plants.'
   text_details: 'Details of the plant'
   text_edit: 'Edit a plant'
@@ -47,6 +53,8 @@ text_and_label:
   dont_watered: 'Do not water anymore. The '
   was_enough: ' was enough watered today.'
   log_in: 'log in'
+  avatar: 'Your profile image'
+  avatar_null: 'Default profile image'
 
 plant_label:
   plant_name: 'Name'

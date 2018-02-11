@@ -1,0 +1,7 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% block fos_page_title %}
+    {{ 'text_and_label.resseting'|trans }}
+{% endblock %}
+{% block fos_user_content %}
+    {% include "@FOSUser/Resetting/request_content.html.twig" %}
+{% endblock fos_user_content %}

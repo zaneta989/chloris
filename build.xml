@@ -49,7 +49,7 @@
             <arg value="doctrine:database:create" />
         </exec>
         <echo message="Updating database ..." />
-        <exec executable="bin/console" checkreturn="true">
+        <exec executable="bin/console" checkreturn="true" passthru="true">
             <arg value="doctrine:schema:update" />
             <arg value="--force" />
         </exec>
@@ -67,7 +67,7 @@
     </target>
     <target name="fixturesTest">
         <echo message="Loading data fixtures for test environment ..." />
-        <exec executable="bin/console" checkreturn="true">
+        <exec executable="bin/console" checkreturn="true" passthru="true">
             <arg value="doctrine:fixtures:load" />
             <arg value="--env=test" />
             <arg value="--no-interaction" />
@@ -80,7 +80,7 @@
         <trycatch>
             <try>
                 <exec executable="behat" checkreturn="true" passthru="true">
-                <arg value="--format=progress"/>
+                    <arg value="--format=progress" />
                 </exec>
             </try>
             <catch>
