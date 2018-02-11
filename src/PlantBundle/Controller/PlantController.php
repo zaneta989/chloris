@@ -20,7 +20,7 @@ class PlantController extends Controller
      * @Route("/plant/all", name="myPlants")
      * @return Response
      */
-    public function indexTableViewAction()
+    public function indexAction()
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -30,29 +30,27 @@ class PlantController extends Controller
         $plants = $em->getRepository('PlantBundle:Plant')->findBy([
             'owner' => $user->getId()
         ]);
-
-        return $this->render('myPlants/tableView.html.twig', [
+        if($this->getUser()->getPreferences()->getView()=='tableView')
+            return $this->render('myPlants/tableView.html.twig', [
+            'plants' => $plants]);
+        else  return $this->render('myPlants/cardView.html.twig', [
             'plants' => $plants
         ]);
     }
+
     /**
-     * @Route("/plant/all/cardview", name="myPlantsCardView")
+     * @Route("/plant/save-view-my-plants/{viewName}", name="saveViewMyPlants")
+     * @param string $viewName
      * @return Response
      */
-    public function indexCardViewAction()
+    public function saveViewMyPlantsAction(string $viewName)
     {
         $user = $this->getUser();
+        $user->setPreferences($user->getPreferences()->setView($viewName));
         $em = $this->getDoctrine()->getManager();
-        $isWateredChenger = new IsWateredChanger();
-        $em->persist($isWateredChenger->checkIfYouNeedToWaterPlants($user));
+        $em->persist($user);
         $em->flush();
-        $plants = $em->getRepository('PlantBundle:Plant')->findBy([
-            'owner' => $user->getId()
-        ]);
-
-        return $this->render('myPlants/cardView.html.twig', [
-            'plants' => $plants
-        ]);
+        return $this->redirectToRoute('myPlants');
     }
     /**
      * @Route("/plant/new", name="addPlant")

@@ -6,10 +6,10 @@
     {% else %}
         <h1>{{ 'navigation_buttons.my_plants'|trans }}</h1>
         <div class="btn-group btn-group-xs" role="group" aria-label="...">
-            <a type="button" class="btn btn-default" href="{{ path('myPlantsCardView') }}">
+            <a type="button" class="btn btn-default" href="{{ path('saveViewMyPlants', {'viewName': 'cardView'}) }}">
                 {{ 'navigation_buttons.card_view' | trans }}
             </a>
-            <a type="button" class="btn btn-default" href="{{ path('myPlants') }}">
+            <a type="button" class="btn btn-default" href="{{ path('saveViewMyPlants', {'viewName': 'tableView'}) }}">
                 {{ 'navigation_buttons.table_view' | trans }}
             </a>
         </div>
