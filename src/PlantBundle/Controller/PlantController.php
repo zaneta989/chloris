@@ -4,8 +4,8 @@ namespace PlantBundle\Controller;
 
 use PlantBundle\Entity\Plant;
 use PlantBundle\Form\Type\PlantType;
-use PlantBundle\Service\IsWateredChanger;
 use PlantBundle\Service\PlantWatered;
+use PlantBundle\Service\IsWateredChanger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,7 +24,7 @@ class PlantController extends Controller
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $isWateredChenger = new IsWateredChanger();
+        $isWateredChenger = $this->get('app.is_watered_chenger');
         $em->persist($isWateredChenger->checkIfYouNeedToWaterPlants($user));
         $em->flush();
         $plants = $em->getRepository('PlantBundle:Plant')->findBy([
@@ -171,7 +171,7 @@ class PlantController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $plantWatered = new PlantWatered();
+        $plantWatered = $this->get('app.plant_watered');
 
         if($plantWatered->checkIfCouldWateredPlant($plant))
         {

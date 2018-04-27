@@ -10,7 +10,7 @@ services:
       chloris_network:
         ipv4_address: 10.0.0.3
   chloris_mysql:
-    image: "mysql:latest"
+    image: mysql:5.7
     hostname: "chloris_mysql"
     container_name: "chloris_mysql"
     environment:
