@@ -1,7 +1,10 @@
 <project name="chloris" default="build" basedir=".">
     <!-- SUITE -->
     <target name="build" depends="doctrine" />
-    <target name="test" depends="behat" />
+    <target name="test">
+        <phingcall target="phpunit" />
+        <phingcall target="behat" />
+    </target>
     <!-- END -->
     <!-- COMPOSER -->
     <target name="composer">
@@ -89,6 +92,10 @@
             </catch>
         </trycatch>
         <phingcall target="fixturesDev"/>
+    </target>
+    <target name="phpunit">
+        <echo message="Run phpunit tests ..." />
+        <exec executable="phpunit" checkreturn="true" passthru="true" />
     </target>
     <!-- END -->
 </project>
