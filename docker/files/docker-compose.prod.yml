@@ -4,6 +4,8 @@ services:
     build: .
     hostname: "chloris_php"
     container_name: "chloris_php"
+    volumes:
+      - "../../:/var/www/chloris"
   chloris_mysql:
     image: "mysql:latest"
     hostname: "chloris_mysql"
