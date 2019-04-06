@@ -18,10 +18,10 @@ RUN chmod +x /usr/local/bin/phing
 # prepend bins to PATH
 ENV PATH="/var/www/chloris/bin:/var/www/chloris/vendor/bin:${PATH}"
 
-# set www-data uid to 1000 (likely uid of host user) to avoid permission issues
-RUN usermod -u $DOCKER_UID www-data
-RUN groupmod -g $DOCKER_UID www-data
-RUN chown -R $DOCKER_UID:$DOCKER_UID /var/www
+# set www-data uid to 1001 (likely uid of host user) to avoid permission issues
+RUN usermod -u 1001 www-data
+RUN groupmod -g 1001 www-data
+RUN chown -R 1001:1001 /var/www
 
 # serve
 CMD ["php-fpm"]

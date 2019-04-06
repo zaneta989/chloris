@@ -1,10 +1,7 @@
-version: '2'
+version: '3'
 services:
   chloris_php:
-    build:
-      context: .
-      args:
-        DOCKER_UID: $DOCKER_UID
+    build: .
     hostname: "chloris_php"
     container_name: "chloris_php"
   chloris_mysql:
@@ -20,5 +17,8 @@ services:
     image: "nginx:alpine"
     hostname: "chloris_nginx"
     container_name: "chloris_nginx"
+    volumes:
+      - "./default.conf:/etc/nginx/conf.d/default.conf"
+      - "../../:/var/www/chloris"
     ports:
       - "80:80"
