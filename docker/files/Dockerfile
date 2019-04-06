@@ -1,4 +1,4 @@
-FROM php:fpm-alpine
+FROM php:7.0-fpm-alpine
 
 # install necessary software
 RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
@@ -11,7 +11,7 @@ WORKDIR /var/www/chloris
 # pdo - required by symfony
 # zip - required by composer
 # phing - build tool
-RUN docker-php-ext-install pdo_mysql zip &> /dev/null
+RUN docker-php-ext-install pdo_mysql zip
 RUN curl -L "http://www.phing.info/get/phing-2.16.0.phar" -o /usr/local/bin/phing
 RUN chmod +x /usr/local/bin/phing
 

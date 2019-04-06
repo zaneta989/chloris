@@ -1,0 +1,21 @@
+version: '2'
+services:
+  chloris_php:
+    build: .
+    hostname: "chloris_php"
+    container_name: "chloris_php"
+  chloris_mysql:
+    image: "mysql:latest"
+    hostname: "chloris_mysql"
+    container_name: "chloris_mysql"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "dev"
+      MYSQL_DATABASE: "chloris"
+  chloris_nginx:
+    image: "nginx:alpine"
+    hostname: "chloris_nginx"
+    container_name: "chloris_nginx"
+    ports:
+      - "80:80"

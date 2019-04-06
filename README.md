@@ -5,7 +5,7 @@ First, check if git, docker and docker-compose are present on your system. Git i
 
 First, clone this repository 
 
-`git clone https://github.com/zawias2704/chloris.git`
+`git clone https://github.com/zaneta989/chloris.git`
 
 Next, go to the project directory.
 
