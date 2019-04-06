@@ -1,7 +1,10 @@
 version: '2'
 services:
   chloris_php:
-    build: .
+    build:
+      context: .
+      args:
+        DOCKER_UID: $DOCKER_UID
     hostname: "chloris_php"
     container_name: "chloris_php"
   chloris_mysql:
