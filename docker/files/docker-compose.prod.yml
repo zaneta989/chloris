@@ -20,7 +20,7 @@ services:
     hostname: "chloris_nginx"
     container_name: "chloris_nginx"
     volumes:
-      - "./default.conf:/etc/nginx/conf.d/default.conf"
+      - "./default.conf:/etc/nginx/conf.d/default.prod.conf"
       - "../../:/var/www/chloris"
     ports:
       - "80:80"
