@@ -7,11 +7,11 @@ services:
     volumes:
       - "../../:/var/www/chloris"
   chloris_mysql:
-    image: "mysql:latest"
+    image: "mysql:5.6"
     hostname: "chloris_mysql"
     container_name: "chloris_mysql"
     ports:
-      - "3336:3306"
+      - "3366:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "dev"
       MYSQL_DATABASE: "chloris"

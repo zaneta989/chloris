@@ -38,14 +38,14 @@
     <target name="doctrine" depends="composer">
         <echo message="Drop database ..." />
         <retry retryCount="3" retryDelay="5">
-            <exec executable="bin/console" checkreturn="true">
+            <exec executable="bin/console" checkreturn="true" passthru="true">
                 <arg value="doctrine:database:drop" />
                 <arg value="--if-exists" />
                 <arg value="--force" />
             </exec>
         </retry>
         <echo message="Creating database ..." />
-        <exec executable="bin/console" checkreturn="true">
+        <exec executable="bin/console" checkreturn="true" passthru="true">
             <arg value="doctrine:database:create" />
         </exec>
         <echo message="Updating database ..." />
