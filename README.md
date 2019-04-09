@@ -11,6 +11,14 @@ Next, go to the project directory.
 
 `cd chloris`
 
+I have prepared two nginx configuration files:
+* production (without symfony dev toolbar) 
+* development
+
+To set environment you must change line on file `docker/files/.env`:
+
+`APP_ENV=dev` or `APP_ENV=prod`
+
 Now you can run containers in order to start an application:
 
 `./docker/up`
@@ -27,13 +35,7 @@ Run the tests after the above command
 
 `phing test`
 
-Now you can run application in browser. 
-
-On Linux
-
-`10.0.0.1`
-
-On macOS
+Now you can run application in browser:
 
 `localhost`
 
