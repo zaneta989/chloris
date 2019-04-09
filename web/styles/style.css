@@ -132,8 +132,8 @@ body{
 
 section#login
 {
-    background-size: cover;
     background: url('/../images/login.jpg') center;
+    background-size: cover;
     margin: 50px 0 0 0;
     height: calc(100vh - 50px);
     text-align: left;
